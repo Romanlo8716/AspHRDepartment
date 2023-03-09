@@ -1,0 +1,141 @@
+﻿@model Laba1.Models.Worker
+
+@{
+    ViewData["Title"] = "Intelligence";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Сведения о сотруднике</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Middlename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Middlename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.idPost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.idDepartment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+    </dl>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Изменить</a>
+       
+    </div>
+    <hr />
+    <table class="table">
+        <tbody>
+           
+            <tr>
+                
+                <td>
+                   <h5> Трудовая книга</h5>
+                </td>
+               <td>
+                   <h5>
+                     
+                    <a asp-action="AddLaborBook" asp-route-id="Id">Добавить</a> |
+                    <a asp-action="Edit" asp-route-id="">Просмотр</a> |
+                    Пока что не работает!
+                   
+                    
+                    </h5>
+               </td>
+               
+            </tr>
+            
+            <tr>
+                <td>
+               <h5> Образование </h5>
+                </td>
+                 <td>
+                     <h5>
+                   
+                    <a asp-controller="Educations" asp-action="AddEducation" asp-route-id="@Model?.Id">Добавить</a> |
+                    <a asp-controller="Educations" asp-action="Index" asp-route-id="@Model?.Id">Просмотр</a> 
+                    
+                   
+                    </h5>
+               </td>
+            </tr>
+            <tr>
+                <td>
+                <h5>Отпуск</h5>
+                </td>
+                 <td>
+                     <h5>
+                    <a asp-action="Edit" asp-route-id="">Добавить</a> |
+                        <a asp-action="Edit" asp-route-id="">Просмотр</a> |
+                        Пока что не работает!
+                   
+                    </h5>
+               </td>
+            </tr>
+            <tr>
+                <td>
+               <h5> Медицинская книга </h5>
+               </td>
+               <td>
+                   <h5>
+                    <a asp-action="Edit" asp-route-id="">Добавить</a> |
+                        <a asp-action="Edit" asp-route-id="">Просмотр</a> |
+                        Пока что не работает!
+                    
+                    </h5>
+               </td>
+            </tr>
+            <tr>
+                <td>
+                <h5> Военный билет </h5>
+               </td>
+               <td>
+                   <h5>
+                    <a asp-action="Edit" asp-route-id="">Добавить</a> |
+                        <a asp-action="Edit" asp-route-id="">Просмотр</a> |
+                        Пока что не работает!
+                    
+                    </h5>
+               </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+<div style="margin-top=30px">
+
+    <a asp-action="Index">Вернуться назад</a>
+</div>

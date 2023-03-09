@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Laba1.Models.Post>
+
+@{
+    ViewData["Title"] = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Добавление в: @ViewBag.NameDep</h2>
+
+<h2>Работника: @ViewBag.SurnameWorker @ViewBag.NameWorker @ViewBag.MiddlenameWorker</h2>
+<hr />
+<p>
+    <h2>Выберите должность работнику внутри отдела:</h2>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+               
+                <td>
+                    <form asp-action="ChooseWorker" >
+                        <div class="form-group">
+                            <input type="hidden" name="departmentId" value="@ViewBag.idDep" />
+                            <input type="hidden" name="workerId" value="@ViewBag.idWorker" />
+                            <input type="hidden" name="postId" value="@item.Id" />
+                            <input type="submit" value="Выбрать" class="btn btn-primary" />
+                            <a asp-action="EditWorker" style="color:red" asp-route-id="@item.Id ">Изменить</a>
+                        </div>
+
+
+
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

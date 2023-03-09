@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Laba1.Models.Education>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Данные об образовании</h1>
+<input type="hidden" name="WorkerId" value="@ViewBag.WorkerId" />
+<div class="form-group">
+    <h4>
+        <label style="width:700px">Сотрудник: @ViewBag.Surname @ViewBag.Name @ViewBag.Middlename</label>
+    </h4>
+</div>
+<p>
+    <a asp-action="AddEducation" asp-route-id="@ViewBag.WorkerId">Добавить новые данные</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.diplomSeries)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.diplomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.special)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.yearEnd)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.diplomSeries)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.diplomNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.special)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.yearEnd)
+            </td>
+         
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
