@@ -9,173 +9,173 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Laba1
 build_property.RootNamespace = Laba1
-build_property.ProjectDir = C:\3 курс\Asp\Laba1\Laba1\
+build_property.ProjectDir = C:\Users\kom_3\Documents\GitHub\AspHRDepartment\Laba1\Laba1\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\3 курс\Asp\Laba1\Laba1
+build_property.MSBuildProjectDirectory = C:\Users\kom_3\Documents\GitHub\AspHRDepartment\Laba1\Laba1
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AdressDepartments/Create.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AdressDepartments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRyZXNzRGVwYXJ0bWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AdressDepartments/Delete.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AdressDepartments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRyZXNzRGVwYXJ0bWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AdressDepartments/Details.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AdressDepartments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRyZXNzRGVwYXJ0bWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AdressDepartments/Edit.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AdressDepartments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRyZXNzRGVwYXJ0bWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AdressDepartments/Index.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AdressDepartments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRyZXNzRGVwYXJ0bWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AllWorkersVacation/AddVacation.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AllWorkersVacation/AddVacation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsV29ya2Vyc1ZhY2F0aW9uXEFkZFZhY2F0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AllWorkersVacation/DetailsVacations.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AllWorkersVacation/DetailsVacations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsV29ya2Vyc1ZhY2F0aW9uXERldGFpbHNWYWNhdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/AllWorkersVacation/Index.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/AllWorkersVacation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWxsV29ya2Vyc1ZhY2F0aW9uXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/AddWorker.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/AddWorker.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQWRkV29ya2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ChooseWorker.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/ChooseWorker.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQ2hvb3NlV29ya2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ConfirmSelectionAddWorker.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/ConfirmSelectionAddWorker.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQ29uZmlybVNlbGVjdGlvbkFkZFdvcmtlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/Create.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/Delete.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/Details.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/Edit.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/EditWorker.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/EditWorker.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRWRpdFdvcmtlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/Index.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Departments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Educations/AddEducation.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Educations/AddEducation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2F0aW9uc1xBZGRFZHVjYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Educations/Create.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Educations/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2F0aW9uc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Educations/Delete.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Educations/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2F0aW9uc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Educations/Details.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Educations/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2F0aW9uc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Educations/Edit.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Educations/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2F0aW9uc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Educations/Index.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Educations/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWR1Y2F0aW9uc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Home/Index.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Home/Privacy.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Posts/Create.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Posts/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Posts/Delete.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Posts/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Posts/Details.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Posts/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Posts/Edit.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Posts/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Posts/Index.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Posts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Shared/Error.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Create.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Workers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Delete.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Workers/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Details.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Workers/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Edit.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Workers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Index.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Workers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Intelligence.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Workers/Intelligence.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xJbnRlbGxpZ2VuY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/_ViewImports.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/_ViewStart.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/3 курс/Asp/Laba1/Laba1/Views/Shared/_Layout.cshtml]
+[C:/Users/kom_3/Documents/GitHub/AspHRDepartment/Laba1/Laba1/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-mtoqcff6wu

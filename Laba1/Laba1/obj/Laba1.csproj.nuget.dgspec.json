@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\3 курс\\Asp\\Laba1\\Laba1\\Laba1.csproj": {}
+    "C:\\Users\\kom_3\\Documents\\GitHub\\AspHRDepartment\\Laba1\\Laba1\\Laba1.csproj": {}
   },
   "projects": {
-    "C:\\3 курс\\Asp\\Laba1\\Laba1\\Laba1.csproj": {
+    "C:\\Users\\kom_3\\Documents\\GitHub\\AspHRDepartment\\Laba1\\Laba1\\Laba1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\3 курс\\Asp\\Laba1\\Laba1\\Laba1.csproj",
+        "projectUniqueName": "C:\\Users\\kom_3\\Documents\\GitHub\\AspHRDepartment\\Laba1\\Laba1\\Laba1.csproj",
         "projectName": "Laba1",
-        "projectPath": "C:\\3 курс\\Asp\\Laba1\\Laba1\\Laba1.csproj",
+        "projectPath": "C:\\Users\\kom_3\\Documents\\GitHub\\AspHRDepartment\\Laba1\\Laba1\\Laba1.csproj",
         "packagesPath": "C:\\Users\\kom_3\\.nuget\\packages\\",
-        "outputPath": "C:\\3 курс\\Asp\\Laba1\\Laba1\\obj\\",
+        "outputPath": "C:\\Users\\kom_3\\Documents\\GitHub\\AspHRDepartment\\Laba1\\Laba1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
