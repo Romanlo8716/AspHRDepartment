@@ -1,0 +1,68 @@
+﻿@model Laba1.Models.Worker
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Данные военного билета</h1>
+
+<div>
+    <h4>Сотрудник: @Html.DisplayFor(model => model.Surname) @Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.Middlename)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.military_title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.military_title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.shelf_life)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.shelf_life)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.stock_category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.stock_category)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.profile)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.profile)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.vus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.vus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.name_kommis)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.name_kommis)
+        </dd>
+     
+    </dl>
+</div>
+  @if (User.IsInRole("admin"))
+                {
+<div>
+
+    <a asp-action="AddMilitary" asp-route-id="@Model?.Id">Изменить</a> |
+    <a asp-controller="Workers" asp-action="Intelligence" asp-route-id="@Model?.Id">Вернуться назад</a>
+    </div>
+}
+else
+{
+    <div>
+
+
+        <a asp-controller="Workers" asp-action="Intelligence" asp-route-id="@Model?.Id">Вернуться назад</a>
+    </div>
+}

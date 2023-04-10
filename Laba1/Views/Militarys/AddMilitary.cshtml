@@ -1,0 +1,80 @@
+﻿@model Laba1.Models.Worker
+
+@{
+    ViewData["Title"] = "AddMilitary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Внесение данных военного билета</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddMilitary" asp-route-id="@Model?.Id">
+        
+            <input type="hidden" name="Name" value="@Model?.Name" />
+            <input type="hidden" name="Surname" value="@Model?.Surname" />
+            <input type="hidden" name="Middlename" value="@Model?.Middlename" />
+            <input type="hidden" name="Phone" value="@Model?.Phone" />
+            <input type="hidden" name="Gender" value="@Model?.Gender" />
+
+
+            <div class="form-group">
+                <h4>
+                    <label style="width:700px">Сотрудник: @Model?.Surname  @Model?.Name @Model?.Middlename</label>
+                </h4>
+
+            </div>
+            <div class="form-group" type="hidden">
+               
+                
+               
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="military_title" class="control-label"></label>
+                <input asp-for="military_title" class="form-control" />
+                <span asp-validation-for="military_title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="shelf_life" class="control-label"></label>
+                <input asp-for="shelf_life" class="form-control" />
+                <span asp-validation-for="shelf_life" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stock_category" class="control-label"></label>
+                <input asp-for="stock_category" class="form-control" />
+                <span asp-validation-for="stock_category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="profile" class="control-label"></label>
+                <input asp-for="profile" class="form-control" />
+                <span asp-validation-for="profile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vus" class="control-label"></label>
+                <input asp-for="vus" class="form-control" />
+                <span asp-validation-for="vus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name_kommis" class="control-label"></label>
+                <input asp-for="name_kommis" class="form-control" />
+                <span asp-validation-for="name_kommis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Внести" style="margin-top: 20px" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <div>
+        <a asp-controller="Workers" asp-action="Intelligence" asp-route-id="@ViewBag.id">Вернуться назад</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

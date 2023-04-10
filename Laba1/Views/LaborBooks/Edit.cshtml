@@ -1,0 +1,61 @@
+﻿@model Laba1.Models.LaborBook
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Изменение данных</h1>
+<input type="hidden" name="WorkerId" value="@ViewBag.WorkerId" />
+<div class="form-group">
+    <h4>
+        <label style="width:700px">Сотрудник: @ViewBag.Surname @ViewBag.Name @ViewBag.Middlename</label>
+    </h4>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="WorkerId" />
+            <div class="form-group">
+                <label asp-for="dateRecord" class="control-label"></label>
+                <input asp-for="dateRecord" class="form-control" />
+                <span asp-validation-for="dateRecord" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nameWork" class="control-label"></label>
+                <input asp-for="nameWork" class="form-control" />
+                <span asp-validation-for="nameWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="intelligenceWork" class="control-label"></label>
+                <input asp-for="intelligenceWork" class="form-control" />
+                <span asp-validation-for="intelligenceWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nameDocument" class="control-label"></label>
+                <input asp-for="nameDocument" class="form-control" />
+                <span asp-validation-for="nameDocument" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numberDocument" class="control-label"></label>
+                <input asp-for="numberDocument" class="form-control" />
+                <span asp-validation-for="numberDocument" class="text-danger"></span>
+            </div>
+             <hr />
+            <div class="form-group">
+                <input type="submit" value="Изменить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@ViewBag.WorkerId">Вернуться назад</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

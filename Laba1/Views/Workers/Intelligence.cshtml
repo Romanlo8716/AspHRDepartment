@@ -1,0 +1,793 @@
+﻿@model Laba1.Models.ViewModels.DescriptionsWorker
+
+@{
+    ViewData["Title"] = "Intelligence";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Сведения о сотруднике</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.worker.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.worker.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.worker.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.worker.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.worker.Middlename)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.worker.Middlename)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.worker.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.worker.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.worker.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.worker.Gender)
+        </dd>
+        
+    </dl>
+    @if (User.IsInRole("admin"))
+    {
+
+
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.worker.Id">Изменить</a>
+       
+    </div>
+    
+    <hr />
+
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Отделы и должности сотрудника &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                            <a asp-controller="DepartmentsAndPostsOfWorkers" asp-action="AddDepartment" asp-route-id="@Model?.worker.Id">   Добавить в новый отдел</a> |
+                            <a asp-controller="Departments" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр всех отделов </a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Department)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Post)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.departmentsAndPostsOfWorkers)
+                {
+                   
+                        <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Post.Title)
+                        </td>
+
+                            @if (User.IsInRole("admin"))
+                            {
+                                <td>
+                            
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                    
+                }
+            </tbody>
+        </table>
+
+
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные военного билета &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                            <a asp-controller="Militarys" asp-action="AddMilitary" asp-route-id="@Model?.worker.Id">   Добавить</a> |
+                            <a asp-controller="Militarys" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            
+        
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.military_title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.military_title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.shelf_life)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.shelf_life)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.stock_category)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.stock_category)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.profile)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.profile)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.vus)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.vus)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.name_kommis)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.name_kommis)
+                </dd>
+
+            </dl>
+        </div>
+        <br />
+    <table>
+        <tbody>
+       
+            <tr>
+                <td>
+                        <h3>Данные трудовой книги &nbsp; &nbsp;</h3>
+                </td>
+                <td>
+                    <h5>
+                            <a asp-controller="LaborBooks" asp-action="AddLaborBook" asp-route-id="@Model?.worker.Id">   Добавить</a> |
+                        <a asp-controller="LaborBooks" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                    </h5>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().dateRecord)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().nameWork)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().intelligenceWork)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().nameDocument)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().numberDocument)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.laborBooks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateRecord)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nameWork)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.intelligenceWork)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nameDocument)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.numberDocument)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="LaborBooks" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="LaborBooks" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="LaborBooks" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные об образованиях &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                            <a asp-controller="Educations" asp-action="AddEducation" asp-route-id="@Model?.worker.Id">   Добавить</a> |
+                            <a asp-controller="Educations" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().diplomSeries)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().diplomNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().special)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().yearEnd)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.educations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.diplomSeries)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.diplomNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.special)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.yearEnd)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="Educations" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="Educations" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="Educations" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные об отпусках &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                            <a asp-controller="Vacations" asp-action="AddVacation" asp-route-id="@Model?.worker.Id">   Добавить</a> |
+                            <a asp-controller="Vacations" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.vacations.First().dateStart)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.vacations.First().dateEnd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.vacations.First().typeVacation)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.vacations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateStart)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateEnd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.typeVacation)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="Vacations" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="Vacations" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="Vacations" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные медицинской книги &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                            <a asp-controller="MedicalBooks" asp-action="AddMedicalBook" asp-route-id="@Model?.worker.Id">   Добавить</a> |
+                            <a asp-controller="MedicalBooks" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.medicalBooks.First().placeExam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.medicalBooks.First().dateExam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.medicalBooks.First().conclusion)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.medicalBooks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.placeExam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateExam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.conclusion)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="MedicalBooks" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="MedicalBooks" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="MedicalBooks" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    }
+    else if (User.IsInRole("coach"))
+    {
+
+        <hr />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные военного билета &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                      
+                            <a asp-controller="Militarys" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.military_title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.military_title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.shelf_life)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.shelf_life)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.stock_category)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.stock_category)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.profile)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.profile)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.vus)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.vus)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.worker.name_kommis)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.worker.name_kommis)
+                </dd>
+
+            </dl>
+        </div>
+        <br />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные трудовой книги &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                     
+                            <a asp-controller="LaborBooks" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().dateRecord)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().nameWork)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().intelligenceWork)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().nameDocument)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.laborBooks.First().numberDocument)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.laborBooks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateRecord)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nameWork)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.intelligenceWork)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nameDocument)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.numberDocument)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="LaborBooks" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="LaborBooks" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="LaborBooks" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные об образованиях &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                          
+                            <a asp-controller="Educations" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().diplomSeries)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().diplomNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().special)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educations.First().yearEnd)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.educations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.diplomSeries)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.diplomNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.special)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.yearEnd)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="Educations" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="Educations" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="Educations" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные об отпусках &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                      
+                            <a asp-controller="Vacations" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.vacations.First().dateStart)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.vacations.First().dateEnd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.vacations.First().typeVacation)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.vacations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateStart)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateEnd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.typeVacation)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="Vacations" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="Vacations" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="Vacations" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <table>
+            <tbody>
+
+                <tr>
+                    <td>
+                        <h3>Данные медицинской книги &nbsp; &nbsp;</h3>
+                    </td>
+                    <td>
+                        <h5>
+                      
+                            <a asp-controller="MedicalBooks" asp-action="Index" asp-route-id="@Model?.worker.Id">Просмотр</a>
+                        </h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.medicalBooks.First().placeExam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.medicalBooks.First().dateExam)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.medicalBooks.First().conclusion)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.medicalBooks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.placeExam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dateExam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.conclusion)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                                <a asp-controller="MedicalBooks" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-controller="MedicalBooks" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-controller="MedicalBooks" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        
+    }
+</div>
+<div style="margin-top=30px">
+
+    <a asp-action="Index">Вернуться назад</a>
+</div>

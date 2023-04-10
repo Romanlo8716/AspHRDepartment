@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Laba1.Models.AdressDepartment>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+{
+   
+
+<h1>Адреса отделов</h1>
+  @if (User.IsInRole("admin"))
+                {
+<p>
+    <a asp-action="Create">Добавить адрес</a>
+    </p>
+}
+else
+{
+    
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.House)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.House)
+            </td>
+                @if (User.IsInRole("admin"))
+                {
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+                }
+                else{
+                   
+                }
+        </tr>
+}
+    </tbody>
+</table>
+}
+else{
+    <div class="text-center">
+        <h1 class="display-4">Авторизируйтесь, <br> чтобы просмотреть данные</h1>
+
+    </div>
+}

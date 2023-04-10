@@ -1,0 +1,46 @@
+﻿@model Laba1.Models.MedicalBook
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы действительно хотите удалить данную запись?</h3>
+<div>
+    <h4>Данные из медицинской книги</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.placeExam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.placeExam)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dateExam)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dateExam)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.conclusion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.conclusion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Worker)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Worker.Surname)  @Html.DisplayFor(model => model.Worker.Name) @Html.DisplayFor(model => model.Worker.Surname)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-route-id="@ViewBag.WorkerId">Вернуться назад</a>
+    </form>
+</div>

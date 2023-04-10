@@ -1,0 +1,55 @@
+﻿@model Laba1.Models.LaborBook
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Подробнее</h1>
+
+<div>
+    <h4>Данные из трудовой книги</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dateRecord)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dateRecord)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nameWork)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nameWork)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.intelligenceWork)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.intelligenceWork)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nameDocument)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nameDocument)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.numberDocument)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.numberDocument)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Worker)
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.Surname @ViewBag.Name @ViewBag.Middlename
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Изменить</a> |
+    <a asp-action="Index" asp-route-id="@ViewBag.WorkerId">Вернуться назад</a>
+</div>

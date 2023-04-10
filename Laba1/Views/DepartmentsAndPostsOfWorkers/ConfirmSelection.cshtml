@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "ConfirmSelectionAddWorker";
+}
+
+<h1 class="pb-5">Добавление сотрудника в отдел: Подтверждение</h1>
+<h2>
+    Сотрудник: @ViewBag.NameWorker @ViewBag.SurnameWorker @ViewBag.MiddlenameWorker
+</h2>
+
+<hr />
+<form asp-action="ConfirmSelection">
+
+    <div class="form-horizontal">
+        <div class="row">
+        </div>
+
+        <div class="row">
+            <h2 style="color:red"> <label class="col-form-label col-md-2">Отдел</label></h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Номер телефона
+                        </th>
+                        <th>
+                            Адрес отдела
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            @ViewBag.NameDep
+                        </td>
+                        <td>
+                            @ViewBag.PhoneDep
+                        </td>
+                        <td>
+                            @ViewBag.AdressDepCity @ViewBag.AdressDepStreet @ViewBag.AdressDepHouse
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <h2 style="color:red">
+                Должность внутри отдела
+            </h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Название
+                        </th>
+                        <th>
+                            Начальная зарплата
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>
+                            @ViewBag.TilePost
+                        </td>
+                        <td>
+                            @ViewBag.SalaryPost
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="hidden" name="departmentId" value="@ViewBag.idDep" />
+                <input type="hidden" name="workerId" value="@ViewBag.idWorker" />
+                <input type="hidden" name="postId" value="@ViewBag.idPost" />
+
+                <input type="submit" value="Подтвердить" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>

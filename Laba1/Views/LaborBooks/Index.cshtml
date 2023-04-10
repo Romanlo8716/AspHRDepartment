@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Laba1.Models.LaborBook>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Данные трудовой книге</h1>
+<input type="hidden" name="WorkerId" value="@ViewBag.WorkerId" />
+<div class="form-group">
+    <h4>
+        <label style="width:700px">Сотрудник: @ViewBag.Surname @ViewBag.Name @ViewBag.Middlename</label>
+    </h4>
+</div>
+  @if (User.IsInRole("admin"))
+                {
+<p>
+    <a asp-action="AddLaborBook" asp-route-id="@ViewBag.WorkerId">Добавить новые данные</a>
+    </p>
+}
+else
+{
+    
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.dateRecord)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nameWork)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.intelligenceWork)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nameDocument)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numberDocument)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateRecord)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nameWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.intelligenceWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nameDocument)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numberDocument)
+            </td>
+                @if (User.IsInRole("admin"))
+                {
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+                }
+                else
+                {
+                    
+                }
+        </tr>
+}
+    </tbody>
+</table>
