@@ -49,6 +49,9 @@ namespace Laba1.Models
         [Display(Name = "Название коммисариата")]
         public string? name_kommis { get; set; }
 
+        [Display(Name = "Фото сотрудника")]
+        public string? Photo { get; set; }
+
 
     }
 }

@@ -12,12 +12,15 @@ namespace Laba1.Models
         [Display(Name = "Сотрудник")]
         public Worker? Worker { get; set; }
 
+        [Display(Name = "Отдел")]
+
         public int DepartmentId { get; set; }
 
         [Display(Name = "Отдел")]
 
         public Department? Department { get; set; }
 
+        [Display(Name = "Должность")]
         public int PostId { get; set; }
 
         [Display(Name = "Должность")]

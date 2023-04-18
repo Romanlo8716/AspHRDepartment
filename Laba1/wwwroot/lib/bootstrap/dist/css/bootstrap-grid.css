@@ -1324,11 +1324,13 @@
 .gy-xxl-4 {
     --bs-gutter-y: 1.5rem;
   }
+    
+   
 
-  .g-xxl-5,
-.gx-xxl-5 {
-    --bs-gutter-x: 3rem;
-  }
+    .g-xxl-5,
+    .gx-xxl-5 {
+        --bs-gutter-x: 3rem;
+    }
 
   .g-xxl-5,
 .gy-xxl-5 {

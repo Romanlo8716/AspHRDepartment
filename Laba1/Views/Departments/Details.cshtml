@@ -1,40 +1,145 @@
-﻿@model Laba1.Models.Department
+﻿@model Laba1.Models.ViewModels.DescriptionsWorker
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
-<h1>Подроднее</h1>
+    string address = "";
+    address = $"{ViewBag.City}, {ViewBag.Street}, {ViewBag.House}";
+}
+<meta charset="utf-8">
+<script src="/js/intlTelInput.min.js" charset="utf-8"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=3d7dc5c5-e1ba-4602-85e9-09ebd053ec6c&lang=ru_RU" type="text/javascript"></script>
+
+
+<h1>Подробнее</h1>
 
 <div>
-    <h4>Отдел</h4>
+    <h4>Отдел: @ViewBag.NameDepartment</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Department.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @try
+            {
+                @Html.DisplayFor(model => model.departmentsAndPostsOfWorkers.First().Department.Name)
+            }
+            catch (Exception ex)
+            {
+                
+            }
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
+            @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Department.Phone)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
+               @try
+            {
+                @Html.DisplayFor(model => model.departmentsAndPostsOfWorkers.First().Department.Phone)
+            }
+            catch (Exception ex)
+            {
+                
+            }
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idAdressDepartment)
+            @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Department.idAdressDepartment)
         </dt>
-        <dd class = "col-sm-10">
-            
-           @Html.DisplayFor(model => model.AdressDepartment.City)
-           @Html.DisplayFor(model => model.AdressDepartment.Street)
-           @Html.DisplayFor(model => model.AdressDepartment.House)
-        </dd>
+       
     </dl>
 </div>
+
+<div id="map" style="width:600px; height:250px;"></div>
+
+            <script type="text/javascript">
+                function init() {
+                    var myMap = new ymaps.Map('map', {
+                        center: [55.74, 37.58],
+                        zoom: 13,
+                        controls: []
+                    });
+
+
+                    var searchControl = new ymaps.control.SearchControl({
+                        options: {
+                            provider: 'yandex#search'
+                        }
+                    });
+
+                    myMap.controls.add(searchControl);
+
+
+                    searchControl.search('@Html.Raw(address)');
+                }
+
+                ymaps.ready(init);
+            </script>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Изменить</a> |
+    <a asp-action="Edit" asp-route-id="@ViewBag.DepId">Изменить</a> |
     <a asp-action="Index">Вернуться назад</a>
 </div>
+<br />
+<table>
+    <tbody>
+
+        <tr>
+            <td>
+                <h3>Сотрудники внутри отдела &nbsp; &nbsp;</h3>
+            </td>
+            <td>
+                <h5>
+                    <a asp-action="AddWorker" asp-route-id="@ViewBag.DepId">   Добавить сотрудника</a> |
+                </h5>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Worker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Post)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.departmentsAndPostsOfWorkers)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Worker.Surname)  @Html.DisplayFor(modelItem => item.Worker.Name)  @Html.DisplayFor(modelItem => item.Worker.Middlename)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Post.Title)
+                </td>
+
+                @if (User.IsInRole("admin"))
+                {
+
+                    <td>
+                        <a asp-controller="DepartmentsAndPostsOfWorkers" asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                        <a asp-controller="DepartmentsAndPostsOfWorkers" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                        <a asp-controller="DepartmentsAndPostsOfWorkers" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                    </td>
+
+
+                }
+                else
+                {
+
+                }
+            </tr>
+
+        }
+    </tbody>
+</table>
+

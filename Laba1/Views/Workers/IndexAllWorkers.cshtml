@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Laba1.Models.Worker>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/styleWorkerIndex.css" />
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+{
+
+
+
+    <h3 style="text-align:center;">Все сотрудники</h3>
+
+    <hr style="width:100px; margin: auto;" />
+
+    <p style="text-align:center;">
+        <a asp-action="Create">Добавить сотрудника</a>
+    </p>
+                //@Html.DisplayFor(modelItem => item.Name)
+    <div class="middle">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Middlename)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Middlename)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <td>
+                              
+                                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Авторизируйтесь, <br> чтобы просмотреть данные</h1>
+
+    </div>
+}

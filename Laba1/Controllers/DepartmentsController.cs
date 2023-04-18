@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Laba1.Models;
+using Laba1.Models.ViewModels;
 
 namespace Laba1.Controllers
 {
@@ -126,26 +127,51 @@ namespace Laba1.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmSelectionAddWorker(int departmentId, int workerId, int postId, [Bind("Id, WorkerId, DepartmentId, PostId")] DepartmentsAndPostsOfWorker departmentsAndPostsOfWorker)
         {
-            //Worker worker = await _context.Workers.FindAsync(workerId);
+            IQueryable<DepartmentsAndPostsOfWorker> checkWorker = _context.DepartmentsAndPostsOfWorker.Where(e => departmentId == e.DepartmentId);
 
-            //worker.idDepartment = departmentId;
-            //worker.idPost = postId;
-            //_context.Update(worker);
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
-
-            if (ModelState.IsValid)
+            if (checkWorker.Count() == 0)
             {
-                departmentsAndPostsOfWorker.DepartmentId = departmentId;
-                departmentsAndPostsOfWorker.WorkerId = workerId;
-                departmentsAndPostsOfWorker.PostId = postId;
-                _context.Add(departmentsAndPostsOfWorker);
-              
-              
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    departmentsAndPostsOfWorker.DepartmentId = departmentId;
+                    departmentsAndPostsOfWorker.WorkerId = workerId;
+                    departmentsAndPostsOfWorker.PostId = postId;
+                    _context.Add(departmentsAndPostsOfWorker);
+
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(departmentsAndPostsOfWorker);
             }
-            return View(departmentsAndPostsOfWorker);
+            else
+            {
+                if (workerId == checkWorker.First().WorkerId && postId == checkWorker.First().PostId)
+                {
+                    return RedirectToAction(nameof(ErrorAddWorker), new {id = departmentId});
+                }
+                else
+                {
+                    if (ModelState.IsValid)
+                    {
+                        departmentsAndPostsOfWorker.DepartmentId = departmentId;
+                        departmentsAndPostsOfWorker.WorkerId = workerId;
+                        departmentsAndPostsOfWorker.PostId = postId;
+                        _context.Add(departmentsAndPostsOfWorker);
+
+
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    return View(departmentsAndPostsOfWorker);
+                }
+            }
+        }
+
+        public IActionResult ErrorAddWorker(int id)
+        {
+            ViewBag.id = id;
+            return View();
         }
 
         // GET: Workers/Edit/5
@@ -228,13 +254,24 @@ namespace Laba1.Controllers
                     return NotFound();
                 }
 
+                DescriptionsWorker descWorker = new DescriptionsWorker();
+
                 var department = await _context.Departments.Include(b => b.AdressDepartment).FirstOrDefaultAsync(m => m.Id == id);
+
+                descWorker.departmentsAndPostsOfWorkers = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).Where(e => id == e.DepartmentId);
+
+                ViewBag.City = department.AdressDepartment.City;
+                ViewBag.Street = department.AdressDepartment.Street;
+                ViewBag.House = department.AdressDepartment.House;
+                ViewBag.DepId = id;
+                ViewBag.NameDepartment = department.Name;
+
                 if (department == null)
                 {
                     return NotFound();
                 }
 
-                return View(department);
+                return View(descWorker);
             }
             else
             {

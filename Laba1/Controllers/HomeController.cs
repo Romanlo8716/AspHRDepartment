@@ -1,21 +1,28 @@
 ﻿using Laba1.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Laba1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppDBContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+      
+
+   
+
+        public HomeController(AppDBContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var departments = _context.Departments.Include(b => b.AdressDepartment);
+           
+            return View(await departments.ToListAsync());
         }
 
         public IActionResult Privacy()

@@ -16,3 +16,252 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.boxDepartment {
+    width: 350px;
+    height: 400px;
+    background-color: white;
+   
+    margin-top: 30px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-right:30px;
+    border: 1px solid rgb(150,150,150);
+    
+}
+
+    .boxDepartment:hover {
+        background-color: rgb(240,240,240);
+    }
+
+.logoDepartment {
+    height: 70px;
+    background-color: rgb(105,169,214);
+    border-top-left-radius: 10px;
+    border-top-right-radius:10px;
+}
+
+.nameDepartment{
+   
+   
+
+    position:center;
+    color:white;
+    font-size:22px
+}
+
+.mapAdress {
+    width: 350px;
+    height: 300px;
+    display: inline-block;
+    margin-right: 30px;
+
+}
+
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5), 7px 7px 20px 0px rgba(0,0,0,.1), 4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+
+.btn-16 {
+    margin-left:20px;
+    margin-right:10px;
+    width:170px;
+    border: none;
+    color: #000;
+    z-index: 1;
+}
+
+    .btn-16:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 100%;
+        top: 0;
+        left: 0;
+        direction: rtl;
+        z-index: -1;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+        transition: all 0.3s ease;
+    }
+
+    .btn-16:hover {
+        color: #000;
+    }
+
+        .btn-16:hover:after {
+            left: auto;
+            right: 0;
+            width: 100%;
+        }
+
+    .btn-16:active {
+        top: 2px;
+    }
+
+
+.boxDepLink {
+    text-decoration: none;
+}
+
+/* Оформление панели */
+#side-checkbox {
+    display: none;
+}
+
+.side-panel {
+    position: fixed;
+    z-index: 999999;
+    top: 0;
+    left: -360px;
+    background: #337AB7;
+    transition: all 0.5s;
+    width: 320px;
+    height: 100vh;
+    box-shadow: 10px 0 20px rgba(0,0,0,0.4);
+    color: #FFF;
+    padding: 40px 20px;
+}
+
+.side-title {
+    position:relative;
+    font-size: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #BFE2FF;
+   
+    
+}
+
+
+/* Оформление кнопки на странице */
+.side-button-1-wr {
+    text-align: center; /* Контейнер для кнопки, чтобы было удобнее ее разместить */
+}
+
+.menuItem {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1rem;
+    clear: both;
+    font-weight: 400;
+    color: rgba(255,255,255, 0.8);
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    border-radius: 10px;
+    height:50px;
+}
+
+    .menuItem:hover, .menuItem:focus {
+        color: rgba(255,255,255);
+        background-color: rgba(233,236,239, 0.5);
+    }
+
+.side-button-1 {
+    display: inline-block;
+}
+
+    .side-button-1 .side-b {
+        margin-top:-20px;
+        margin-left:10px;
+        text-decoration: none;
+        position: fixed;
+        font-size: 20px;
+        line-height: 20px;
+       
+        color: #FFF;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: 'Roboto', Тahoma, sans-serif;
+      
+        cursor: pointer;
+        
+    }
+
+        .side-button-1 .side-b:hover,
+        .side-button-1 .side-b:active,
+        .side-button-1 .side-b:focus {
+            color: #FFF;
+        }
+
+        .side-button-1 .side-b:after,
+        .side-button-1 .side-b:before {
+            position: absolute;
+            height: 4px;
+            left: 50%;
+            bottom: -6px;
+            content: "";
+            transition: all 280ms ease-in-out;
+            width: 0;
+        }
+
+    .side-button-1 .side-open:after,
+    .side-button-1 .side-open:before {
+        background: green;
+    }
+
+    .side-button-1 .side-close:after,
+    .side-button-1 .side-close:before {
+        background: red;
+    }
+
+    .side-button-1 .side-b:before {
+        top: -6px;
+    }
+
+    .side-button-1 .side-b:hover:after,
+    .side-button-1 .side-b:hover:before {
+        width: 100%;
+        left: 0;
+    }
+    /* Переключатели кнопки 1 */
+    .side-button-1 .side-close {
+        display: none;
+    }
+
+#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-open {
+    display: none;
+}
+
+#side-checkbox:checked + .side-panel + .side-button-1-wr .side-button-1 .side-close {
+    display: block;
+}
+
+#side-checkbox:checked + .side-panel {
+    left: 0;
+}
+/* Оформление кнопки на панеле */
+.side-button-2 {
+    font-size: 30px;
+    border-radius: 20px;
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    transform: rotate(45deg);
+    color: #BFE2FF;
+    transition: all 280ms ease-in-out;
+}
+
+    .side-button-2:hover {
+        transform: rotate(45deg) scale(1.1);
+        color: #FFF;
+    }
+
+

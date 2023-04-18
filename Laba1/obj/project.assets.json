@@ -97,6 +97,35 @@
       "MessagePackAnalyzer/2.1.152": {
         "type": "package"
       },
+      "Microsoft.AspNet.WebPages.Data/2.0.20710": {
+        "type": "package",
+        "compile": {
+          "lib/net40/WebMatrix.Data.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net40/WebMatrix.Data.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNet.WebPages.WebData/2.0.20710": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebPages.Data": "[2.0.20710, 2.1.0)"
+        },
+        "compile": {
+          "lib/net40/WebMatrix.WebData.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net40/WebMatrix.WebData.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/6.0.15": {
         "type": "package",
         "compile": {
@@ -3930,6 +3959,12 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "WebMatrix.WebData/2.0.30506": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebPages.WebData": "2.0.20710"
+        }
       }
     }
   },
@@ -4034,6 +4069,32 @@
         "messagepackanalyzer.nuspec",
         "tools/install.ps1",
         "tools/uninstall.ps1"
+      ]
+    },
+    "Microsoft.AspNet.WebPages.Data/2.0.20710": {
+      "sha512": "PTwS5C1vF69FDikWhUkJZ4qb96yxtdVuVR90Hjt7e/GDNVOeR7tXMYWHs9cPP0v35EiO+V6BUj1c8dNCUXW7Ag==",
+      "type": "package",
+      "path": "microsoft.aspnet.webpages.data/2.0.20710",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/WebMatrix.Data.dll",
+        "lib/net40/WebMatrix.Data.xml",
+        "microsoft.aspnet.webpages.data.2.0.20710.nupkg.sha512",
+        "microsoft.aspnet.webpages.data.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.WebPages.WebData/2.0.20710": {
+      "sha512": "BZsx1iI2qZ9c21QKD3KAk7BGrGQ3gkGw8a7AdkmDNJoK+RyEcEy46lyzpyiD7BkVKvlszO7er2m2nR2NWK6u9Q==",
+      "type": "package",
+      "path": "microsoft.aspnet.webpages.webdata/2.0.20710",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/WebMatrix.WebData.dll",
+        "lib/net40/WebMatrix.WebData.xml",
+        "microsoft.aspnet.webpages.webdata.2.0.20710.nupkg.sha512",
+        "microsoft.aspnet.webpages.webdata.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/6.0.15": {
@@ -11060,6 +11121,17 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "WebMatrix.WebData/2.0.30506": {
+      "sha512": "kDz6OjnVNm/asletyqpHmb0y/56KduvxWhi6KJdAgnT45LZPu6IUETXNISA1icfoRwBWrUirQxAZw6JwhYrqoQ==",
+      "type": "package",
+      "path": "webmatrix.webdata/2.0.30506",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "webmatrix.webdata.2.0.30506.nupkg.sha512",
+        "webmatrix.webdata.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -11072,7 +11144,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 7.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.13"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.13",
+      "WebMatrix.WebData >= 2.0.30506"
     ]
   },
   "packageFolders": {
@@ -11159,6 +11232,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.13, )"
+          },
+          "WebMatrix.WebData": {
+            "target": "Package",
+            "version": "[2.0.30506, )"
           }
         },
         "imports": [
@@ -11183,5 +11260,27 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Microsoft.AspNet.WebPages.Data 2.0.20710\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Microsoft.AspNet.WebPages.Data",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Microsoft.AspNet.WebPages.WebData 2.0.20710\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Microsoft.AspNet.WebPages.WebData",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

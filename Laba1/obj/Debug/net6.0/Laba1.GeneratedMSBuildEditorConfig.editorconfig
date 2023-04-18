@@ -132,6 +132,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRWRpdFdvcmtlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ErrorAddWorker.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRXJyb3JBZGRXb3JrZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/3 курс/Asp/Laba1/Laba1/Views/Departments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -286,6 +290,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/Workers/IndexAllWorkers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV29ya2Vyc1xJbmRleEFsbFdvcmtlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/3 курс/Asp/Laba1/Laba1/Views/Workers/Intelligence.cshtml]

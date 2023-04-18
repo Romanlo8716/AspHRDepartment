@@ -569,3 +569,5 @@ C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument.d
 C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\refs\WindowsBase.dll
 C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\WebMatrix.Data.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\WebMatrix.WebData.dll

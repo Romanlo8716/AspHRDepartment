@@ -1,0 +1,53 @@
+﻿.boxWorker {
+    height: 300px;
+    width: 240px;
+    background-color: rgb(241,242,247);
+    margin-top: 20px;
+    display: inline-block;
+    margin-left: 20px;
+    border-radius:6px;
+   text-align:center;
+   align-content:center;
+   align-items:center;
+}
+
+.middle{
+    margin-left:110px;
+}
+
+.nameWorker{
+    font-size:15px;
+    margin-top:140px;
+    font-weight:bold;
+    color: rgb(100,120,147)
+}
+
+.postWorker{
+    color: rgb(96,100,109);
+}
+
+.phoneWorker{
+    color: rgb(164,169,173);
+    margin-top:30px;
+    font-size:15px;
+}
+
+.photoWorker{
+
+    align-content:center;
+    width:50px;
+    height:50px;
+}
+
+.photo {
+    width: 150px;
+    
+    align-content: center;
+   
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+
+}
+
+

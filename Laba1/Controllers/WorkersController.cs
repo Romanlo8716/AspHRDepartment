@@ -7,25 +7,59 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Laba1.Models;
 using Laba1.Models.ViewModels;
+using System.Numerics;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Laba1.Controllers
 {
     public class WorkersController : Controller
     {
         private readonly AppDBContext _context;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public WorkersController(AppDBContext context)
+        public WorkersController(AppDBContext context, IWebHostEnvironment appEnvironment)
         {
             _context = context;
+            _appEnvironment = appEnvironment;
         }
 
         // GET: Workers
         public async Task<IActionResult> Index()
         {
-            var publishingDBContext = _context.Workers;
+            
+            var worker = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post);
 
-            return View(await publishingDBContext.ToListAsync());
+
+            var workerId =await _context.Workers.FirstOrDefaultAsync(e => e.Id == 2);
+
+            if (!workerId.Photo.IsNullOrEmpty())
+            {
+                byte[] photodata = System.IO.File.ReadAllBytes(_appEnvironment.WebRootPath + workerId.Photo);
+                ViewBag.Photodata = photodata;
+            }
+            else
+            {
+                ViewBag.Photodata = null;
+            }
+
+
+
+
+            //DepartmentsAndPostsOfWorker post = _context.DepartmentsAndPostsOfWorker.Include(e => e.Post).Include(e => e.Worker).FirstOrDefaultAsync(e => e.WorkerId == worker.Id).Result;
+
+            // ViewBag.postWorker = post.Post.Title;
+
+            return View(await worker.ToListAsync());
             //return View(await _context.Workers.ToListAsync());
+        }
+
+        public async Task<IActionResult> IndexAllWorkers()
+        {
+
+            var worker = _context.Workers;
+
+            return View(await worker.ToListAsync());
+
         }
 
         // GET: Workers/Details/5
@@ -47,14 +81,23 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> Intelligence(int? id)
         {
-            ViewBag.workerId = id; 
-
+            ViewBag.workerId = id;
+            var worker = await _context.Workers.FirstOrDefaultAsync(m => m.Id == id);
+            
             if (id == null || _context.Workers == null)
             {
                 return NotFound();
             }
-
-            var worker = await _context.Workers.FirstOrDefaultAsync(m => m.Id == id);
+            if (!worker.Photo.IsNullOrEmpty())
+            {
+                byte[] photodata = System.IO.File.ReadAllBytes(_appEnvironment.WebRootPath + worker.Photo);
+                ViewBag.Photodata = photodata;
+            }
+            else
+            {
+                ViewBag.Photodata = null;
+            }
+           
 
             DescriptionsWorker descWorker = new DescriptionsWorker();
             descWorker.worker = worker;
@@ -102,15 +145,26 @@ namespace Laba1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Surname,Middlename,Phone,Gender")] Worker worker)
+        public async Task<IActionResult> Create([Bind("Id,Name,Surname,Middlename,Phone,Gender")] Worker worker, IFormFile upload)
         {
             if (ModelState.IsValid)
             {
+                if (upload != null)
+                {
+                    string path = "/Files/" + upload.FileName;
+                    using (var fileStream = new
+                   FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await upload.CopyToAsync(fileStream);
+                    }
+                    worker.Photo = path;
+                }
                 _context.Add(worker);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-           
+            
+
             return View(worker);
         }
 
@@ -129,7 +183,18 @@ namespace Laba1.Controllers
                 {
                     return NotFound();
                 }
-                
+
+                if (!worker.Photo.IsNullOrEmpty())
+                {
+                    byte[] photodata = System.IO.File.ReadAllBytes(_appEnvironment.WebRootPath + worker.Photo);
+                    ViewBag.Photodata = photodata;
+                }
+                else
+                {
+                    ViewBag.Photodata = null;
+                }
+
+
                 return View(worker);
             }
             else
@@ -143,7 +208,7 @@ namespace Laba1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Middlename,Phone,Gender,idPost,idDepartment")] Worker worker)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Surname,Middlename,Phone,Gender,idPost,idDepartment, Photo")] Worker worker, IFormFile? upload)
         {
             if (id != worker.Id)
             {
@@ -152,6 +217,21 @@ namespace Laba1.Controllers
 
             if (ModelState.IsValid)
             {
+                if (upload != null)
+                {
+                    string path = "/Files/" + upload.FileName;
+                    using (var fileStream = new
+                   FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await upload.CopyToAsync(fileStream);
+                    }
+                    //if (!worker.Photo.IsNullOrEmpty())
+                    //{
+                    //    System.IO.File.Delete(_appEnvironment.WebRootPath + worker.Photo);
+                    //}
+                    worker.Photo = path;
+                }
+
                 try
                 {
                     _context.Update(worker);
@@ -186,6 +266,16 @@ namespace Laba1.Controllers
 
 
                 var worker = await _context.Workers.FirstOrDefaultAsync(m => m.Id == id);
+
+                if (!worker.Photo.IsNullOrEmpty())
+                {
+                    byte[] photodata = System.IO.File.ReadAllBytes(_appEnvironment.WebRootPath + worker.Photo);
+                    ViewBag.Photodata = photodata;
+                }
+                else
+                {
+                    ViewBag.Photodata = null;
+                }
                 if (worker == null)
                 {
                     return NotFound();

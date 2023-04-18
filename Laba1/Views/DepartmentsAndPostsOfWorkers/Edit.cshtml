@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Изменить</h1>
 
-<h4>DepartmentsAndPostsOfWorker</h4>
+<h4>Сотрудник: @ViewBag.SurnameWorker @ViewBag.NameWorker @ViewBag.MiddlenameWorker</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,9 +15,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="WorkerId" class="control-label"></label>
-                <select asp-for="WorkerId" class="form-control" asp-items="ViewBag.WorkerId"></select>
-                <span asp-validation-for="WorkerId" class="text-danger"></span>
+              
+                <input type="hidden" asp-for="WorkerId" class="form-control" asp-items="ViewBag.WorkerId" />
+              
             </div>
             <div class="form-group">
                 <label asp-for="DepartmentId" class="control-label"></label>
@@ -29,15 +29,16 @@
                 <select asp-for="PostId" class="form-control" asp-items="ViewBag.PostId"></select>
                 <span asp-validation-for="PostId" class="text-danger"></span>
             </div>
+            <br>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Workers" asp-action="Intelligence" asp-route-id="@Model.Worker.Id">Вернуться назад</a>
 </div>
 
 @section Scripts {

@@ -148,27 +148,57 @@ namespace Laba1.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmSelection(int departmentId, int workerId, int postId, [Bind("Id, WorkerId, DepartmentId, PostId")] DepartmentsAndPostsOfWorker departmentsAndPostsOfWorker)
         {
-            //Worker worker = await _context.Workers.FindAsync(workerId);
-
-            //worker.idDepartment = departmentId;
-            //worker.idPost = postId;
-            //_context.Update(worker);
-            //await _context.SaveChangesAsync();
-            //return RedirectToAction(nameof(Index));
-
-            if (ModelState.IsValid)
+            IQueryable<DepartmentsAndPostsOfWorker> checkWorker = _context.DepartmentsAndPostsOfWorker.Where(e => workerId == e.WorkerId);
+            if (checkWorker.Count() == 0)
             {
-                departmentsAndPostsOfWorker.DepartmentId = departmentId;
-                departmentsAndPostsOfWorker.WorkerId = workerId;
-                departmentsAndPostsOfWorker.PostId = postId;
-                _context.Add(departmentsAndPostsOfWorker);
+                if (ModelState.IsValid)
+                {
+                    departmentsAndPostsOfWorker.DepartmentId = departmentId;
+                    departmentsAndPostsOfWorker.WorkerId = workerId;
+                    departmentsAndPostsOfWorker.PostId = postId;
+                    _context.Add(departmentsAndPostsOfWorker);
 
 
-                await _context.SaveChangesAsync();
-                return Redirect($"~/Workers/Intelligence/{workerId}");
-              
+                    await _context.SaveChangesAsync();
+                    return Redirect($"~/Workers/Intelligence/{workerId}");
+
+                }
+                return View(departmentsAndPostsOfWorker);
             }
-            return View(departmentsAndPostsOfWorker);
+            else
+            {
+                if (departmentId == checkWorker.First().DepartmentId && postId == checkWorker.First().PostId)
+                {
+                    return RedirectToAction(nameof(ErrorAddWorker));
+                }
+                else
+                {
+                    if (ModelState.IsValid)
+                    {
+                        departmentsAndPostsOfWorker.DepartmentId = departmentId;
+                        departmentsAndPostsOfWorker.WorkerId = workerId;
+                        departmentsAndPostsOfWorker.PostId = postId;
+                        _context.Add(departmentsAndPostsOfWorker);
+
+
+                        await _context.SaveChangesAsync();
+                        return Redirect($"~/Workers/Intelligence/{workerId}");
+
+                    }
+                    return View(departmentsAndPostsOfWorker);
+                }
+            }
+
+
+           
+        
+
+          
+        }
+
+        public void ErrorAddWorker()
+        {
+
         }
 
         // GET: DepartmentsAndPostsOfWorkers/Create
@@ -210,6 +240,15 @@ namespace Laba1.Controllers
             }
 
             var departmentsAndPostsOfWorker = await _context.DepartmentsAndPostsOfWorker.FindAsync(id);
+
+            int workerId = departmentsAndPostsOfWorker.WorkerId;
+
+            Worker worker = await _context.Workers.FindAsync(workerId);
+
+            ViewBag.NameWorker = worker.Name;
+            ViewBag.SurnameWorker = worker.Surname;
+            ViewBag.MiddlenameWorker = worker.Middlename;
+
             if (departmentsAndPostsOfWorker == null)
             {
                 return NotFound();
@@ -250,7 +289,7 @@ namespace Laba1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Redirect($"~/Workers/Intelligence/{departmentsAndPostsOfWorker.WorkerId}");
             }
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", departmentsAndPostsOfWorker.DepartmentId);
             ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", departmentsAndPostsOfWorker.PostId);
@@ -294,8 +333,10 @@ namespace Laba1.Controllers
                 _context.DepartmentsAndPostsOfWorker.Remove(departmentsAndPostsOfWorker);
             }
             
+            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Redirect($"~/Workers/Intelligence/{departmentsAndPostsOfWorker.WorkerId}");
         }
 
         private bool DepartmentsAndPostsOfWorkerExists(int id)

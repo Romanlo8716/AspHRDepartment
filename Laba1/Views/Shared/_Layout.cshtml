@@ -12,24 +12,79 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Отдел кадров</a>
+                <input type="checkbox" id="side-checkbox" />
+                <div class="side-panel">
+                    <label class="side-button-2" for="side-checkbox">+</label>
+                  
+                    <div class="side-title">Список страниц:</div>
+                   
+                    <a class="menuItem" asp-area="" asp-controller="Workers" asp-action="Index">
+                        <div style="margin-top:7px">
+                        <img style="width:30px; height:30px; margin-top:-5px" src="~/images/workersWhite.png" />
+                        Работники
+                        </div>
+                    </a>
+                    <a class="menuItem" asp-area="" asp-controller="Posts" asp-action="Index">
+                        <div style="margin-top:7px">
+                        <img style="width:30px; height:30px; margin-top:-5px" src="~/images/postWhite.png" />
+                        Должности
+                        </div>
+                    </a>
+
+                    <a class="menuItem" asp-area="" asp-controller="Departments" asp-action="Index">
+                        <div style="margin-top:7px">
+                        <img style="width:30px; height:25px" src="~/images/departmentWhite.png" />
+                        Отделы
+                        </div>
+                    </a>
+                    <hr class="dropdown-divider">
+                    <a class="menuItem" asp-area="" asp-controller="AdressDepartments" asp-action="Index">
+                        <div style="margin-top:7px">
+                            <img style="width:30px; height:30px" src="~/images/adressDep.png" />
+                            Адреса отделов
+                        </div>
+                    </a>
+                </div>
+                <div class="side-button-1-wr">
+                    <label class="side-button-1" for="side-checkbox">
+                        <div class="side-b side-open" >
+                            <img style="width:30px; height:30px" src="~/images/menu-icon.png"/>
+                        </div>
+                        <div class="side-b side-close">
+                            <img style="width:30px; height:30px" src="~/images/menu-icon.png" />
+                        </div>
+                    </label>
+                </div>
+                
+                <a class="navbar-brand" style="margin-left:70px" asp-area="" asp-controller="Home" asp-action="Index">Отдел кадров</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-               
+
+                <a asp-controller="Workers" asp-action="Index">
+                <button   class="custom-btn btn-16">Наш персонал</button>
+                </a>
+
+                <a asp-controller="Departments" asp-action="Index">
+                    <button class="custom-btn btn-16">Отделы</button>
+                </a>
+
+                <a asp-controller="Posts" asp-action="Index">
+                    <button class="custom-btn btn-16">Должности</button>
+                </a>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                    
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная страница</a>
-                        </li>
+                       
                           <li class="nav-item dropdown">
+                            
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Список страниц
+            Страницы отдела кадров
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" asp-area="" asp-controller="Workers" asp-action="Index">Работники</a></li>
+            <li><a class="dropdown-item" asp-area="" asp-controller="Workers" asp-action="IndexAllWorkers">Все сотрудники</a></li>
             <li><a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="Index">Должности</a></li>
             <li><a class="dropdown-item" asp-area="" asp-controller="Departments" asp-action="Index">Отделы</a></li>
              <li><hr class="dropdown-divider"></li>
@@ -54,7 +109,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Laba1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Insurance company - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

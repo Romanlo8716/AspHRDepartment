@@ -5,12 +5,56 @@
       "PackagePath": "staticwebassets\\Laba1.bundle.scp.css"
     },
     {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\0deab31c4ffe854358cd1d0f4eb0feaa.jpeg",
+      "PackagePath": "staticwebassets\\Files\\0deab31c4ffe854358cd1d0f4eb0feaa.jpeg"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\44.png",
+      "PackagePath": "staticwebassets\\Files\\44.png"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\792591b01876937740533acb94acd6e2.jpg",
+      "PackagePath": "staticwebassets\\Files\\792591b01876937740533acb94acd6e2.jpg"
+    },
+    {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleHomePage.css",
+      "PackagePath": "staticwebassets\\css\\styleHomePage.css"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleWorkerIndex.css",
+      "PackagePath": "staticwebassets\\css\\styleWorkerIndex.css"
+    },
+    {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\adressDep.png",
+      "PackagePath": "staticwebassets\\images\\adressDep.png"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\dep.png",
+      "PackagePath": "staticwebassets\\images\\dep.png"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\departmentWhite.png",
+      "PackagePath": "staticwebassets\\images\\departmentWhite.png"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\menu-icon.png",
+      "PackagePath": "staticwebassets\\images\\menu-icon.png"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\postWhite.png",
+      "PackagePath": "staticwebassets\\images\\postWhite.png"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\workersWhite.png",
+      "PackagePath": "staticwebassets\\images\\workersWhite.png"
     },
     {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\js\\site.js",
