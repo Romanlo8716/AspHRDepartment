@@ -127,9 +127,11 @@ namespace Laba1.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmSelectionAddWorker(int departmentId, int workerId, int postId, [Bind("Id, WorkerId, DepartmentId, PostId")] DepartmentsAndPostsOfWorker departmentsAndPostsOfWorker)
         {
-            IQueryable<DepartmentsAndPostsOfWorker> checkWorker = _context.DepartmentsAndPostsOfWorker.Where(e => departmentId == e.DepartmentId);
+            
 
-            if (checkWorker.Count() == 0)
+            var workerCount = _context.DepartmentsAndPostsOfWorker.Where(e => e.WorkerId == workerId).Where(e => e.DepartmentId == departmentId).Where(e => e.PostId == postId).ToList();
+
+            if (workerCount.Count() == 0)
             {
                 if (ModelState.IsValid)
                 {
@@ -146,25 +148,7 @@ namespace Laba1.Controllers
             }
             else
             {
-                if (workerId == checkWorker.First().WorkerId && postId == checkWorker.First().PostId)
-                {
-                    return RedirectToAction(nameof(ErrorAddWorker), new {id = departmentId});
-                }
-                else
-                {
-                    if (ModelState.IsValid)
-                    {
-                        departmentsAndPostsOfWorker.DepartmentId = departmentId;
-                        departmentsAndPostsOfWorker.WorkerId = workerId;
-                        departmentsAndPostsOfWorker.PostId = postId;
-                        _context.Add(departmentsAndPostsOfWorker);
-
-
-                        await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
-                    }
-                    return View(departmentsAndPostsOfWorker);
-                }
+                return RedirectToAction(nameof(ErrorAddWorker), new { id = departmentId });
             }
         }
 
@@ -254,11 +238,19 @@ namespace Laba1.Controllers
                     return NotFound();
                 }
 
-                DescriptionsWorker descWorker = new DescriptionsWorker();
+                DescriptionDepartment descriptionDepartment = new DescriptionDepartment();
 
                 var department = await _context.Departments.Include(b => b.AdressDepartment).FirstOrDefaultAsync(m => m.Id == id);
 
-                descWorker.departmentsAndPostsOfWorkers = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).Where(e => id == e.DepartmentId);
+                //var WorkersInDepartment = await _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).FirstOrDefaultAsync(f => f.DepartmentId == id);
+
+                //ViewBag.WorkersInDep = _context.DepartmentsAndPostsOfWorker.Where(f => f.DepartmentId == id).ToList();
+
+                //ViewBag.WorkersSurname = WorkersInDepartment.Worker.Surname;
+
+                descriptionDepartment.department = department; 
+                descriptionDepartment.departmentsAndPostsOfWorkers = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).Where(b => b.DepartmentId == id).ToArray();
+
 
                 ViewBag.City = department.AdressDepartment.City;
                 ViewBag.Street = department.AdressDepartment.Street;
@@ -271,7 +263,7 @@ namespace Laba1.Controllers
                     return NotFound();
                 }
 
-                return View(descWorker);
+                return View(descriptionDepartment);
             }
             else
             {
@@ -284,7 +276,15 @@ namespace Laba1.Controllers
         {
             if (User.IsInRole("admin"))
             {
-                ViewData["idAdressDepartment"] = new SelectList(_context.AdressDepartments, "Id", "City");
+                
+                //ViewData["idAdressDepartment"] = new SelectList(_context.AdressDepartments, "Id", "City");
+                //ViewData["streetAdress"] = new SelectList(_context.AdressDepartments, "Id", "Street");
+
+               
+
+               
+
+                ViewData["idAdressDepartment"] = new SelectList(_context.AdressDepartments, "Id", "FullAddress");
 
                 return View();
             }
@@ -308,7 +308,7 @@ namespace Laba1.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["idAdressDepartment"] = new SelectList(_context.AdressDepartments, "Id", "City", department.idAdressDepartment);
-         
+            
             return View(department);
         }
 

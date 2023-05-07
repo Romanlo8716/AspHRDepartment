@@ -1,0 +1,108 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/styleWorkerIndex.css" />
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+{
+
+
+
+    <h3 style="text-align:center;">Кандидаты</h3>
+
+    <hr style="width:100px; margin: auto;" />
+
+    <p style="text-align:center;">
+        <a asp-action="Create">Добавить сотрудника</a>
+    </p>
+    <div class="searchDescWorkerAllWorkers">
+        <a asp-action="IndexAllWorkers" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Все сотрудники</div></div>
+        </a>
+        <a asp-action="GetCandidates" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Кандидаты</div></div>
+        </a>
+        <a asp-action="GetWorkersOfCompany" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Сотрудники компании</div></div>
+        </a>
+        <a asp-action="GetDismissWorkers" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Уволенные сотрудники</div></div>
+        </a>
+
+
+    </div>
+
+    <br>
+    //@Html.DisplayFor(modelItem => item.Name)
+    <div class="middle">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Фамилия
+                    </th>
+                    <th>
+                        Имя
+                    </th>
+                    <th>
+                        Отчество
+                    </th>
+                    <th>
+                        Пол
+                    </th>
+                    <th>
+                        Телефон
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Worker)
+                {
+                   
+                        <tr>
+                            <td>
+                           @item.Surname
+                            </td>
+                            <td>
+                            @item.Name
+                            </td>
+                            <td>
+                            @item.Middlename
+                            </td>
+                            <td>
+                            @item.Gender
+                            </td>
+                            <td>
+                            @item.Phone
+                            </td>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <td>
+
+                                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
+                                <a asp-action="Dismiss" asp-route-id="@item.Id">Уволить</a>
+
+                            </td>
+                        }
+                        else
+                        {
+
+                        }
+                    </tr>
+                    
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Авторизируйтесь, <br> чтобы просмотреть данные</h1>
+
+    </div>
+}

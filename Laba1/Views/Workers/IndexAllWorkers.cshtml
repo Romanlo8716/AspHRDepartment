@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool flag = false;
 }
 <link rel="stylesheet" href="~/css/styleWorkerIndex.css" />
 @if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
@@ -17,6 +18,24 @@
     <p style="text-align:center;">
         <a asp-action="Create">Добавить сотрудника</a>
     </p>
+    <div class="searchDescWorkerAllWorkers">
+        <a asp-action="IndexAllWorkers" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Все сотрудники</div></div>
+        </a>
+        <a asp-action="GetCandidates" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Кандидаты</div></div>
+        </a>
+        <a asp-action="GetWorkersOfCompany" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Сотрудники компании</div></div>
+        </a>
+        <a asp-action="GetDismissWorkers" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Уволенные сотрудники</div></div>
+        </a>
+
+
+    </div>
+
+    <br>
                 //@Html.DisplayFor(modelItem => item.Name)
     <div class="middle">
         <table class="table">
@@ -36,6 +55,9 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Phone)
+                    </th>
+                    <th>
+                        Статус
                     </th>
                     <th></th>
                 </tr>
@@ -59,15 +81,61 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Phone)
                         </td>
+                        <td >
+                            
+                            @if(item.dissmisStatus == true)
+                            {
+                                <span style="color:red">Уволен</span>
+                            }
+                            
+                            @foreach(var item2 in ViewBag.depAndPost)
+                            {
+                            if (item.Id == item2.WorkerId)
+                            {
+                            flag = true;
+                            break;
+                            }
+                            else
+                            {
+                            flag = false;
+                            }
+
+                               
+                            }
+                            @if (flag == false && item.dissmisStatus == false)
+                            {
+                            <span style="color:green">Кандидат</span>
+                            }
+                            @if (flag == true && item.dissmisStatus == false)
+                            {
+                                <span style="color:blue">Сотрудник</span>
+                            }
+
+                        </td>
                         @if (User.IsInRole("admin"))
                         {
-                            <td>
+                           
                               
-                                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
-                                <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                             
+                                @if (item.dissmisStatus == false)
+                                {
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
+                                    <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
+                                    <a asp-action="Dismiss" asp-route-id="@item.Id">Уволить</a>
+                                </td>
+                                }
+                                else
+                                {
+                                 <td>
+                                    <a asp-action="Recover" asp-route-id="@item.Id">Восстановить</a> |
+                                    <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                                </td>
+                                }
+                                
 
-                            </td>
+                          
                         }
                         else
                         {

@@ -5,11 +5,17 @@
     margin-top: 20px;
     display: inline-block;
     margin-left: 20px;
-    border-radius:6px;
-   text-align:center;
-   align-content:center;
-   align-items:center;
+    border-radius: 6px;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    transition: transform .2s;
 }
+
+    .boxWorker:hover {
+        background-color: rgb(231,232,237);
+        transform: scale(1.05);
+    }
 
 .middle{
     margin-left:110px;
@@ -24,11 +30,17 @@
 
 .postWorker{
     color: rgb(96,100,109);
+
+}
+
+.departmentWorker{
+    margin-top: 20px;
+    font-size:30px;
 }
 
 .phoneWorker{
     color: rgb(164,169,173);
-    margin-top:30px;
+    margin-top:20px;
     font-size:15px;
 }
 
@@ -40,14 +52,41 @@
 }
 
 .photo {
-    width: 150px;
-    
+    width:150px;
+    height:150px;
     align-content: center;
-   
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    margin-left: 45px;
+    margin-top: 20px
 }
 
+.searchDescWorker {
+    margin-top: 30px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(220,220,220);
+}
 
+.DepWorker {
+    text-align: center;
+    width: 212px;
+    height: 40px;
+    color: rgb(64, 107, 142);
+    display: inline-block;
+}
+
+    .DepWorker:hover {
+        background-color: rgb(12,83,161);
+        color: white;
+    }
+
+.searchDescWorkerAllWorkers {
+    margin: 0 auto;
+    margin-top: 30px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(220,220,220);
+    width: 863px;
+}

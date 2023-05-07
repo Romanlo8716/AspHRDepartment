@@ -1,4 +1,4 @@
-﻿@model Laba1.Models.ViewModels.DescriptionsWorker
+﻿@model Laba1.Models.ViewModels.DescriptionDepartment
 
 @{
     ViewData["Title"] = "Details";
@@ -19,25 +19,25 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Department.Name)
+            @Html.DisplayNameFor(model => model.department.Name)
         </dt>
         <dd class = "col-sm-10">
             @try
             {
-                @Html.DisplayFor(model => model.departmentsAndPostsOfWorkers.First().Department.Name)
+                @Html.DisplayFor(model => model.department.Name)
             }
             catch (Exception ex)
             {
-                
+               
             }
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Department.Phone)
+            @Html.DisplayNameFor(model => model.department.Phone)
         </dt>
         <dd class = "col-sm-10">
                @try
             {
-                @Html.DisplayFor(model => model.departmentsAndPostsOfWorkers.First().Department.Phone)
+                @Html.DisplayFor(model => model.department.Phone)
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@
             }
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Department.idAdressDepartment)
+            @Html.DisplayNameFor(model => model.department.idAdressDepartment)
         </dt>
        
     </dl>
@@ -101,10 +101,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Worker)
+                Сотрудник
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Post)
+                @Html.DisplayNameFor(model => model.departmentsAndPostsOfWorkers.First().Post.Title)
             </th>
 
             <th></th>
@@ -116,10 +116,10 @@
 
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Worker.Surname)  @Html.DisplayFor(modelItem => item.Worker.Name)  @Html.DisplayFor(modelItem => item.Worker.Middlename)
+                    @item.Worker.Surname  @item.Worker.Name  @item.Worker.Middlename
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Post.Title)
+                    @item.Post.Title
                 </td>
 
                 @if (User.IsInRole("admin"))

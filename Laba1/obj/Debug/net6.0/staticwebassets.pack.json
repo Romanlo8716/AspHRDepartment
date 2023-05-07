@@ -5,16 +5,40 @@
       "PackagePath": "staticwebassets\\Laba1.bundle.scp.css"
     },
     {
-      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\0deab31c4ffe854358cd1d0f4eb0feaa.jpeg",
-      "PackagePath": "staticwebassets\\Files\\0deab31c4ffe854358cd1d0f4eb0feaa.jpeg"
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\Worker1.jpg",
+      "PackagePath": "staticwebassets\\Files\\Worker1.jpg"
     },
     {
-      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\44.png",
-      "PackagePath": "staticwebassets\\Files\\44.png"
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\Worker2.jpg",
+      "PackagePath": "staticwebassets\\Files\\Worker2.jpg"
     },
     {
-      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\792591b01876937740533acb94acd6e2.jpg",
-      "PackagePath": "staticwebassets\\Files\\792591b01876937740533acb94acd6e2.jpg"
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\Worker3.jpg",
+      "PackagePath": "staticwebassets\\Files\\Worker3.jpg"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\Worker4.jpg",
+      "PackagePath": "staticwebassets\\Files\\Worker4.jpg"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Files\\Worker5.jpg",
+      "PackagePath": "staticwebassets\\Files\\Worker5.jpg"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Reports\\reportVacations.xlsx",
+      "PackagePath": "staticwebassets\\Reports\\reportVacations.xlsx"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Reports\\reportVacations_template.xlsx",
+      "PackagePath": "staticwebassets\\Reports\\reportVacations_template.xlsx"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Reports\\reportWorkers.xlsx",
+      "PackagePath": "staticwebassets\\Reports\\reportWorkers.xlsx"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\Reports\\reportWorkers_template.xlsx",
+      "PackagePath": "staticwebassets\\Reports\\reportWorkers_template.xlsx"
     },
     {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\site.css",
@@ -25,8 +49,16 @@
       "PackagePath": "staticwebassets\\css\\styleHomePage.css"
     },
     {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleWorkerCreate.css",
+      "PackagePath": "staticwebassets\\css\\styleWorkerCreate.css"
+    },
+    {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleWorkerIndex.css",
       "PackagePath": "staticwebassets\\css\\styleWorkerIndex.css"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleWorkerIntelligence.css",
+      "PackagePath": "staticwebassets\\css\\styleWorkerIntelligence.css"
     },
     {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\favicon.ico",

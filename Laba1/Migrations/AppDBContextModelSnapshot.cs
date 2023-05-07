@@ -299,7 +299,42 @@ namespace Laba1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Children")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CityHabitation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfIssue")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DescriptionWorker")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DivisionCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FamilyStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HouseHabitation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IssuedByWhom")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -311,6 +346,15 @@ namespace Laba1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("NumberInn")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberPass")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberSnils")
+                        .HasColumnType("int");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -318,9 +362,19 @@ namespace Laba1.Migrations
                     b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SeriesPass")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StreetHabitation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("dissmisStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("military_title")
                         .HasColumnType("nvarchar(max)");

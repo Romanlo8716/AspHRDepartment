@@ -1,0 +1,113 @@
+﻿html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color:rgb(243,243,243);
+}
+
+.wrapper {
+    
+}
+
+.nameWorker{
+    color: rgb(13,81,146);
+   
+}
+
+.searchDescWorker {
+   
+    margin-top: 30px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgb(220,220,220);
+}
+
+.DepWorker{
+
+    text-align:center;
+   
+    width:212px;
+    height:40px;
+    color: rgb(64, 107, 142);
+    display:inline-block;
+}
+
+    .DepWorker:hover {
+        background-color: rgb(12,83,161);
+        color:white;
+    }
+
+.ourInform {
+    margin-top: 50px;
+    display: inline-block;
+    display: flex;
+}
+
+.boxImage {
+    
+    width: 15%;
+}
+
+
+    .lickInform, .boxImage .passInform {
+        height: 100%;
+    }
+
+
+.image {
+    width: 220px;
+    height: 220px;
+    align-content: center;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    margin-left: 45px;
+    margin-top: 20px
+}
+
+.lickInform{
+    margin-left: 120px;
+    width: 70%;
+}
+
+.logoLichInform{
+    margin-left:30px;
+}
+
+.boxLichInform {
+    width: 480px;
+    height: 350px;
+    border: 1px solid rgb(226,226,226);
+    margin-top: 20px;
+}
+
+.boxDescWorker{
+    margin-top:80px;
+}
+
+.passInform {
+    width: 65%;
+}
+
+.editButton {
+    width: 220px;
+    height: 40px;
+    text-decoration: none;
+    color: rgb(52, 122,182);
+    text-align: center;
+    margin-left: 45px;
+    margin-top: -110px;
+    border: 1px solid rgb(52, 122,182);
+    vertical-align: middle;
+}
+
+    .editButton:hover {
+        background-color: rgb(233,233,233);
+    }
+
+
+p.centered {
+    text-align: center;
+    display: inline-block;
+}

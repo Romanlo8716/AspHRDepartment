@@ -13,7 +13,7 @@ namespace Laba1.Models
 
         [Display(Name = "Улица")]
         [Required(ErrorMessage = "Введите название улицы!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё ]+", ErrorMessage = "Некорректное название улицы!")]
+        [RegularExpression(@"^[А-ЯЁ]{1}[а-яёА-ЯЁ ]+", ErrorMessage = "Некорректное название улицы!")]
         public string Street { get; set; }
 
         [Display(Name = "Дом")]
@@ -21,6 +21,7 @@ namespace Laba1.Models
         [RegularExpression(@"^[0-9]{1}[0-9а-я/]+", ErrorMessage = "Некорректный номер дома!")]
         public string House { get; set; }
 
+        public string FullAddress => string.Format("{0} {1} {2}", City, Street, House);
 
     }
 }

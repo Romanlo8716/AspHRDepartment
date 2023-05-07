@@ -571,3 +571,16 @@ C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Ex
 C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
 C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\WebMatrix.Data.dll
 C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\WebMatrix.WebData.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\System.Web.Mvc.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\System.Web.Razor.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\System.Web.Helpers.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\EPPlus.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\3 курс\Asp\Laba1\Laba1\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll

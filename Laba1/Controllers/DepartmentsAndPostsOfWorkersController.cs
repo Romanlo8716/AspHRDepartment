@@ -47,6 +47,12 @@ namespace Laba1.Controllers
             return View(departmentsAndPostsOfWorker);
         }
 
+        public IActionResult ErrorAddWorkerDesc(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
         public IActionResult AddDepartment(int? id)
         {
             
@@ -148,8 +154,10 @@ namespace Laba1.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmSelection(int departmentId, int workerId, int postId, [Bind("Id, WorkerId, DepartmentId, PostId")] DepartmentsAndPostsOfWorker departmentsAndPostsOfWorker)
         {
-            IQueryable<DepartmentsAndPostsOfWorker> checkWorker = _context.DepartmentsAndPostsOfWorker.Where(e => workerId == e.WorkerId);
-            if (checkWorker.Count() == 0)
+            
+            var workerCount = _context.DepartmentsAndPostsOfWorker.Where(e => e.WorkerId == workerId).Where(e => e.DepartmentId == departmentId).Where(e => e.PostId == postId).ToList();
+
+            if (workerCount.Count() == 0)
             {
                 if (ModelState.IsValid)
                 {
@@ -167,30 +175,8 @@ namespace Laba1.Controllers
             }
             else
             {
-                if (departmentId == checkWorker.First().DepartmentId && postId == checkWorker.First().PostId)
-                {
-                    return RedirectToAction(nameof(ErrorAddWorker));
-                }
-                else
-                {
-                    if (ModelState.IsValid)
-                    {
-                        departmentsAndPostsOfWorker.DepartmentId = departmentId;
-                        departmentsAndPostsOfWorker.WorkerId = workerId;
-                        departmentsAndPostsOfWorker.PostId = postId;
-                        _context.Add(departmentsAndPostsOfWorker);
-
-
-                        await _context.SaveChangesAsync();
-                        return Redirect($"~/Workers/Intelligence/{workerId}");
-
-                    }
-                    return View(departmentsAndPostsOfWorker);
-                }
+                return RedirectToAction(nameof(ErrorAddWorkerDesc), new { id = workerId });
             }
-
-
-           
         
 
           

@@ -1,0 +1,103 @@
+﻿body {
+    background-color: rgb(243,243,243);
+}
+
+.ourInform {
+    margin-top: 50px; 
+}
+
+
+.boxImage {
+   margin-top:-30px;
+   margin-left: 120px;
+   width:1080px;
+}
+
+
+   
+
+.lickInform {
+    margin-top:30px;
+    margin-left:120px;
+    display:inline-block;
+    
+}
+
+.passInform {
+    display: inline-block;
+    margin-top: 30px;
+    margin-left: 77px;
+    
+    position: absolute;
+}
+
+
+
+.logoLichInform {
+    margin-left: 30px;
+}
+
+.logoPassInform {
+    margin-left: 30px;
+}
+
+.logoDesc {
+    margin-left: 30px;
+    text-decoration: underline solid rgb(52,122,182);
+}
+
+.logoMilitary {
+    margin-left: 30px;
+    text-decoration: underline solid rgb(52,122,182);
+}
+
+
+.boxLichInform {
+    width: 500px;
+    height: 700px;
+    border: 1px solid rgb(226,226,226);
+    margin-top: 20px;
+}
+
+.boxPassInform {
+    width: 500px;
+    height: 700px;
+    border: 1px solid rgb(226,226,226);
+    margin-top: 20px;
+}
+
+.boxDescWorker {
+    margin-top: 50px;
+   
+    margin-left:120px;
+}
+
+.boxMilitaryWorker {
+    margin-top: 50px;
+    margin-left: 120px;
+}
+
+.descWorker {
+    border: 1px solid rgb(226,226,226);
+    width: 1080px;
+    height: 400px;
+    margin-top: 30px;
+}
+
+.militaryWorker {
+    border: 1px solid rgb(226,226,226);
+    width: 1080px;
+    height: 400px;
+    margin-top: 30px;
+}
+
+.fio {
+    width: 350px;
+    display: inline-block;
+    margin-left: 44px;
+}
+
+.name {
+    width: 300px;
+    display: inline-block;
+}

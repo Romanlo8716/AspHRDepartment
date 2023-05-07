@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    byte[] photodata;
 }
 <link rel="stylesheet" href="~/css/styleWorkerIndex.css"/>
 @if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
@@ -14,30 +15,58 @@
 
     <hr style="width:100px; margin: auto;" />
 
-    <p style="text-align:center;">
-        <a  asp-action="Create">Добавить сотрудника</a>
-    </p>
+    <div class="searchDescWorker">
+        <a asp-action="ReportOfVacation" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Отчет по отпускам</div></div>
+        </a>
+        <a asp-action="GetReportWorkers" style="text-decoration:none;">
+            <div class="DepWorker"><div style="margin-top:5px;">Отчет по сотрудникам</div></div>
+        </a>
+      
+
+    </div>
+
+
     //@Html.DisplayFor(modelItem => item.Name)
     <div class="middle">
-    @foreach (var item in Model)
-    {
-           
-      <a asp-action="Intelligence" asp-route-id="@item.WorkerId" style="text-decoration:none; color:black;">
-        <div class="boxWorker">
+       
+      
+       @foreach(var department in Model.GroupBy(g => g.Department))
+       {
+           <div class="departmentWorker">@department.Key.Name</div>
+        @foreach (var item in department.ToArray())
+            {
+        
+                <a asp-action="Intelligence" asp-route-id="@item.WorkerId" style="text-decoration:none; color:black;">
+                    <div class="boxWorker">
 
-            <div class="photoWorker">
-                        <input type="hidden" name="Photo" value="@item.Worker.Photo" />
-                        @if (ViewBag.Photodata != null)
-                        {
-                            <img class="photo" width="150" src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
-                        }
-            </div>
-                <div class="nameWorker"> @Html.DisplayFor(modelItem => item.Worker.Name) @Html.DisplayFor(modelItem => item.Worker.Surname)</div>
-                    <div class="postWorker">@Html.DisplayFor(modelItem => item.Post.Title)</div>
-                    <div class="phoneWorker">@Html.DisplayFor(modelItem => item.Worker.Phone)</div>
-        </div>
-      </a>
-    }
+                        <div class="photoWorker">
+                            <input type="hidden" name="Photo" value="@item.Worker.Photo" />
+                         
+                            @if (item.Worker.Photo != null)
+                              {
+                            photodata = System.IO.File.ReadAllBytes(ViewBag.Photodata + item.Worker.Photo);
+                             
+                              }
+                             else
+                              {
+                             photodata = null;
+                              }
+                            @if (photodata != null)
+                            {
+                                <img class="photo"  src="data:image/jpeg;base64,@(Convert.ToBase64String(photodata))">
+                            }
+                        </div>
+                        <div class="nameWorker"> @Html.DisplayFor(modelItem => item.Worker.Name) @Html.DisplayFor(modelItem => item.Worker.Surname)</div>
+                        <div class="postWorker">@Html.DisplayFor(modelItem => item.Post.Title)</div>
+                    
+                        <div class="phoneWorker">@Html.DisplayFor(modelItem => item.Worker.Phone)</div>
+                    </div>
+                </a>
+            }
+        
+        }
+      
     </div>
 }
 else
