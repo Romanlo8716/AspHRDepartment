@@ -1,0 +1,47 @@
+﻿.boxDepartment {
+    width: 300px;
+    height: 350px;
+    background-color: white;
+    margin-top: 30px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-right: 30px;
+    border: 1px solid rgb(150,150,150);
+}
+
+    .boxDepartment:hover {
+        background-color: rgb(240,240,240);
+    }
+
+.logoDepartment {
+   
+    height: 70px;
+    background-color: rgb(105,169,214);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.nameDepartment {
+
+    position: center;
+    color: white;
+    font-size: 22px
+}
+
+.descriptionDep {
+    color: rgb(130, 130,130)
+}
+
+.numberWorkers {
+    margin-top: 50px;
+}
+
+.phoneDep {
+    margin-top: 100px;
+}
+
+.count{
+    margin-top:50px;
+    text-align:center;
+    font-size:18px;
+}

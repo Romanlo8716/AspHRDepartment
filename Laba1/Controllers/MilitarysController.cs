@@ -19,23 +19,30 @@ namespace Laba1.Controllers
         // GET: MilitarysController
         public async Task<IActionResult> Index(int? Id)
         {
-            if (Id == null || _context.Workers == null)
+            if (!User.IsInRole("guest"))
+            {
+                if (Id == null || _context.Workers == null)
+                {
+                    return NotFound();
+                }
+
+                var worker = await _context.Workers.FirstOrDefaultAsync(m => m.Id == Id);
+                if (worker == null)
+                {
+                    return NotFound();
+                }
+
+                return View(worker);
+            }
+            else
             {
                 return NotFound();
             }
-
-            var worker = await _context.Workers.FirstOrDefaultAsync(m => m.Id == Id);
-            if (worker == null)
-            {
-                return NotFound();
-            }
-
-            return View(worker);
         }
 
         public async Task<IActionResult> AddMilitary(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 var worker = await _context.Workers.FindAsync(id);
 
@@ -114,7 +121,16 @@ namespace Laba1.Controllers
         // GET: MilitarysController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+            {
+
+
+                return View();
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // POST: MilitarysController/Delete/5

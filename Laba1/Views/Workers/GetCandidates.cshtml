@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/styleWorkerIndex.css" />
-@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest") || User.IsInRole("multiAdmin"))
 {
 
 
 
     <h3 style="text-align:center;">Кандидаты</h3>
+    <h5 style="text-align:center;">Общее количество: @ViewBag.allWorkers</h5>
 
     <hr style="width:100px; margin: auto;" />
 
@@ -22,7 +23,7 @@
             <div class="DepWorker"><div style="margin-top:5px;">Все сотрудники</div></div>
         </a>
         <a asp-action="GetCandidates" style="text-decoration:none;">
-            <div class="DepWorker"><div style="margin-top:5px;">Кандидаты</div></div>
+            <div class="DepWorker1"><div style="margin-top:5px;">Кандидаты</div></div>
         </a>
         <a asp-action="GetWorkersOfCompany" style="text-decoration:none;">
             <div class="DepWorker"><div style="margin-top:5px;">Сотрудники компании</div></div>
@@ -78,14 +79,14 @@
                             <td>
                             @item.Phone
                             </td>
-                            @if (User.IsInRole("admin"))
+                        @if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
                             {
                                 <td>
 
                                 <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
                                 <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
-                                <a asp-action="Dismiss" asp-route-id="@item.Id">Уволить</a>
-
+                                <a asp-action="Dismiss" asp-route-id="@item.Id">Уволить</a> |
+                                <a asp-controller="DepartmentsAndPostsOfWorkers" asp-action="AddDepartment" asp-route-id="@item.Id">Добавить в отдел</a>
                             </td>
                         }
                         else

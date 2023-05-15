@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Laba1.Models
 {
@@ -16,5 +17,7 @@ namespace Laba1.Models
         [RegularExpression(@"^[0-9]+$", ErrorMessage = "Некорректное значение зарплаты!")]
         [DataType(DataType.Currency)]
         public double Salary { get; set; }
+
+      
     }
 }

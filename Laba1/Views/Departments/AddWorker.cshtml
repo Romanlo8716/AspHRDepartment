@@ -9,67 +9,143 @@
 
 <hr />
 
-<h1>Работники</h1>
+<h2>Сотрудники компании</h2>
 
-<p>
-   @* <a asp-action="Create">Добавить работника</a>*@
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Имя
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Surname)
+                Фамилия
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Middlename)
+                Отчество
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Phone)
+               Телефон
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+               Пол
+            </th>
+            <th>
+                Отделы
             </th>
             
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item1 in ViewBag.WorkersOfCompany)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @item1.Name
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Surname)
+                    @item1.Surname
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Middlename)
+                    @item1.Middlename
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
+                    @item1.Phone
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
+                    @item1.Gender
+                </td>
+                <td>
+                    @foreach (var department in ViewBag.Department)
+                    {
+
+                        @if (item1.Id == department.WorkerId)
+                        {
+                            <a style="margin-top:5px;" class="btn btn-primary" asp-controller="Departments" asp-action="Details" asp-route-id="@department.DepartmentId">@department.Department.Name : @department.Post.Title</a>
+                        }
+
+                    }
                 </td>
                
                 <td>
                     <form asp-action="AddWorker">
                         <div class="form-group">
                             <input type="hidden" name="departmentId" value="@ViewBag.idDep" />
-                            <input type="hidden" name="workerId" value="@item.Id" />
+                            <input type="hidden" name="workerId" value="@item1.Id" />
                             <input type="submit" value="Выбрать" class="btn btn-primary" />
-                            <a asp-action="EditWorker" style="color:green" asp-route-id="@item.Id ">Изменить</a>
+                            <a asp-action="EditWorker" style="color:green" asp-route-id="@item1.Id ">Изменить</a>
                         </div>
-                   
-                  
-                    
                     </form>
                 </td>
             </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Кандидаты</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Отчество
+            </th>
+            <th>
+                Телефон
+            </th>
+            <th>
+                Пол
+            </th>
+         
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Candidates)
+        {
+
+            <tr>
+                <td>
+                    @item.Surname
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Middlename
+                </td>
+                <td>
+                    @item.Gender
+                </td>
+                <td>
+                    @item.Phone
+                </td>
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <form asp-action="AddWorker">
+                            <div class="form-group">
+                                <input type="hidden" name="departmentId" value="@ViewBag.idDep" />
+                                <input type="hidden" name="workerId" value="@item.Id" />
+                                <input type="submit" value="Выбрать" class="btn btn-primary" />
+                                <a asp-action="EditWorker" style="color:green" asp-route-id="@item.Id ">Изменить</a>
+                            </div>
+                        </form>
+                    </td>
+                }
+                else
+                {
+
+                }
+            </tr>
+
         }
     </tbody>
 </table>

@@ -1,0 +1,39 @@
+﻿.body {
+    position: center;
+}
+
+.middle {
+}
+
+.boxPost {
+    width: 800px;
+    height: 70px;
+    background-color: white;
+    margin-top: 30px;
+    border-radius: 10px;
+    border: 1px solid rgb(190,190,190);
+    margin-left: 250px;
+    transition: transform .2s;
+}
+
+    .boxPost:hover {
+        background-color: rgb(240,240,240);
+        transform: scale(1.02);
+    }
+
+.descriptionPost {
+    color: rgb(130,130,130);
+}
+
+.namePost {
+    color: rgb(50,50,50);
+    margin-left: 20px;
+    font-size: 23px;
+}
+
+
+.salaryPost {
+    color: rgb(80,80,80);
+    margin-left: 20px;
+    font-size: 20px;
+}

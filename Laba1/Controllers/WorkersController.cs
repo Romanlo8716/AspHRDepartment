@@ -33,13 +33,11 @@ namespace Laba1.Controllers
         {
             var worker =  _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Post).Include(e => e.Department).OrderBy(o => o.DepartmentId);
 
+            var post = _context.Posts;
 
+            ViewBag.Posts = post;
 
             ViewBag.Photodata = _appEnvironment.WebRootPath;
-            
-
-
-
 
             return View(await worker.ToListAsync());
            
@@ -48,11 +46,19 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> IndexAllWorkers()
         {
-            ViewBag.depAndPost = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker);
-            var worker = _context.Workers;
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+            {
 
-            return View(await worker.ToListAsync());
 
+                ViewBag.depAndPost = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker);
+                var worker = _context.Workers;
+                ViewBag.allWorkers = worker.Count();
+                return View(await worker.ToListAsync());
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         public async Task<IActionResult> GetCandidates()
@@ -101,17 +107,53 @@ namespace Laba1.Controllers
 
             
             ViewBag.Worker = newListWorker.ToList();
+            ViewBag.allWorkers = newListWorker.Count();
             return View(newListWorker);
 
         }
 
         public async Task<IActionResult> GetWorkersOfCompany()
         {
+            var workers = _context.Workers;
 
-            var worker = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).Where(e => e.Worker.dissmisStatus == false);
+            var depAndPost = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post);  
+
+            List<Worker> newListWorker = new List<Worker>();
+
+            bool flag = false;
+
+            foreach (var item1 in workers.ToList())
+            {
+
+                foreach (var item2 in depAndPost.ToList())
+                {
+                    if (item1.Id == item2.WorkerId)
+                    {
+                        flag = true;
+                        break;
+                    }
+                    else
+                    {
+                        flag = false;
+                       
+                    }
 
 
-            return View(await worker.ToListAsync());
+                }
+                if (flag == true && item1.dissmisStatus == false)
+                {
+                    newListWorker.Add(item1);
+                }
+                flag = false;
+            }
+
+            ViewBag.Workers = newListWorker.ToArray(); 
+          
+            ViewBag.allWorkers = newListWorker.Count();
+
+            ViewBag.Department = depAndPost.ToArray();
+
+            return View();
 
         }
 
@@ -119,7 +161,7 @@ namespace Laba1.Controllers
         {
 
             var worker = _context.Workers.Where(e => e.dissmisStatus == true);
-
+            ViewBag.allWorkers = worker.Count();
             return View(await worker.ToListAsync());
 
         }
@@ -145,43 +187,52 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> Intelligence(int? id)
         {
-            ViewBag.workerId = id;
-            var worker = await _context.Workers.FirstOrDefaultAsync(m => m.Id == id);
-            
-            if (id == null || _context.Workers == null)
+            if (User.IsInRole("coach") || User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
-                return NotFound();
-            }
-            if (!worker.Photo.IsNullOrEmpty())
-            {
-                byte[] photodata = System.IO.File.ReadAllBytes(_appEnvironment.WebRootPath + worker.Photo);
-                ViewBag.Photodata = photodata;
+
+
+                ViewBag.workerId = id;
+                var worker = await _context.Workers.FirstOrDefaultAsync(m => m.Id == id);
+
+                if (id == null || _context.Workers == null)
+                {
+                    return NotFound();
+                }
+                if (!worker.Photo.IsNullOrEmpty())
+                {
+                    byte[] photodata = System.IO.File.ReadAllBytes(_appEnvironment.WebRootPath + worker.Photo);
+                    ViewBag.Photodata = photodata;
+                }
+                else
+                {
+                    ViewBag.Photodata = null;
+                }
+
+
+                DescriptionsWorker descWorker = new DescriptionsWorker();
+                descWorker.worker = worker;
+                descWorker.laborBooks = _context.LaborBook.Include(e => e.Worker).Where(e => id == e.WorkerId);
+                descWorker.educations = _context.Educations.Include(e => e.Worker).Where(e => id == e.WorkerId);
+                descWorker.vacations = _context.Vacations.Include(e => e.Worker).Where(e => id == e.WorkerId);
+                descWorker.medicalBooks = _context.MedicalBook.Include(e => e.Worker).Where(e => id == e.WorkerId);
+                //descWorker.departmentsOfWorkers = _context.DepartmentsOfWorker.Include(e => e.Worker).Include(e => e.Department).Where(e => id == e.WorkerId);
+                //descWorker.postsOfWorkers = _context.PostsOfWorker.Include(e => e.Worker).Include(e => e.Post).Where(e => id == e.WorkerId);
+
+                descWorker.departmentsAndPostsOfWorkers = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).Where(e => id == e.WorkerId);
+
+                if (worker == null)
+                {
+                    return NotFound();
+                }
+
+                ViewData["Department"] = new SelectList(_context.Departments, "Id", "Name", worker.Id);
+
+                return View(descWorker);
             }
             else
             {
-                ViewBag.Photodata = null;
-            }
-           
-
-            DescriptionsWorker descWorker = new DescriptionsWorker();
-            descWorker.worker = worker;
-            descWorker.laborBooks = _context.LaborBook.Include(e => e.Worker).Where(e => id == e.WorkerId);
-            descWorker.educations = _context.Educations.Include(e => e.Worker).Where(e => id == e.WorkerId);
-            descWorker.vacations = _context.Vacations.Include(e => e.Worker).Where(e => id == e.WorkerId);
-            descWorker.medicalBooks = _context.MedicalBook.Include(e => e.Worker).Where(e => id == e.WorkerId);
-            //descWorker.departmentsOfWorkers = _context.DepartmentsOfWorker.Include(e => e.Worker).Include(e => e.Department).Where(e => id == e.WorkerId);
-            //descWorker.postsOfWorkers = _context.PostsOfWorker.Include(e => e.Worker).Include(e => e.Post).Where(e => id == e.WorkerId);
-
-            descWorker.departmentsAndPostsOfWorkers = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).Where(e => id == e.WorkerId);
-            
-            if (worker == null)
-            {
                 return NotFound();
             }
-
-            ViewData["Department"] = new SelectList(_context.Departments, "Id", "Name", worker.Id);
-
-            return View(descWorker);
         }
 
 
@@ -191,7 +242,7 @@ namespace Laba1.Controllers
         // GET: Workers/Create
         public IActionResult Create()
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
               
                 return View();
@@ -261,7 +312,7 @@ namespace Laba1.Controllers
         // GET: Workers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Workers == null)
                 {
@@ -338,7 +389,7 @@ namespace Laba1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Intelligence), new { id = id });
             }
            
             return View(worker);
@@ -346,7 +397,7 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> Dismiss(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Workers == null)
                 {
@@ -434,7 +485,7 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> Recover(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Workers == null)
                 {
@@ -518,7 +569,7 @@ namespace Laba1.Controllers
         // GET: Workers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Workers == null)
                 {
@@ -600,7 +651,7 @@ namespace Laba1.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexAllWorkers));
         }
 
         public IActionResult ReportOfVacation()

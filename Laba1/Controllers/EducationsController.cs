@@ -21,20 +21,28 @@ namespace Laba1.Controllers
         // GET: Educations
         public async Task<IActionResult> Index(int? Id)
         {
-            Worker worker = await _context.Workers.FindAsync(Id);
-            ViewBag.WorkerId = Id;
-            ViewBag.Name = worker.Name;
-            ViewBag.Surname = worker.Surname;
-            ViewBag.Middlename = worker.Middlename;
-            ViewBag.Id = Id;
+            if (!User.IsInRole("guest"))
+            {
+                Worker worker = await _context.Workers.FindAsync(Id);
+                ViewBag.WorkerId = Id;
+                ViewBag.Name = worker.Name;
+                ViewBag.Surname = worker.Surname;
+                ViewBag.Middlename = worker.Middlename;
+                ViewBag.Id = Id;
 
 
-            if (Id == null || _context.Educations == null)
+                if (Id == null || _context.Educations == null)
+                {
+                    return NotFound();
+                }
+                var appDBContext = _context.Educations.Include(e => e.Worker).Where(e => Id == e.WorkerId);
+                return View(await appDBContext.ToListAsync());
+            }
+            else
             {
                 return NotFound();
             }
-            var appDBContext = _context.Educations.Include(e => e.Worker).Where(e => Id == e.WorkerId);
-            return View(await appDBContext.ToListAsync());
+          
         }
 
         // GET: Educations/Details/5
@@ -73,22 +81,31 @@ namespace Laba1.Controllers
 
         public IActionResult AddEducation(int? Id)
         {
-            if (Id == null || _context.Educations == null)
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+            {
+
+
+                if (Id == null || _context.Educations == null)
+                {
+                    return NotFound();
+                }
+
+                var worker = _context.Workers.Find(Id);
+                ViewData["WorkerId"] = Id;
+
+                //var education = _context.Educations.Find();
+                ViewBag.WorkerId = Id;
+                ViewBag.Name = worker.Name;
+                ViewBag.Surname = worker.Surname;
+                ViewBag.Middlename = worker.Middlename;
+                ViewBag.Id = Id;
+
+                return View();
+            }
+            else
             {
                 return NotFound();
             }
-
-            var worker =  _context.Workers.Find(Id);
-            ViewData["WorkerId"] = Id;
-
-            //var education = _context.Educations.Find();
-            ViewBag.WorkerId = Id;
-            ViewBag.Name = worker.Name;
-            ViewBag.Surname = worker.Surname;
-            ViewBag.Middlename = worker.Middlename;
-            ViewBag.Id = Id;
-
-            return View();
         }
 
 
@@ -112,28 +129,34 @@ namespace Laba1.Controllers
         // GET: Educations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            
-            if (id == null || _context.Educations == null)
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+            {
+                if (id == null || _context.Educations == null)
+                {
+                    return NotFound();
+                }
+
+                var education = await _context.Educations.FindAsync(id);
+
+                var workerId = education.WorkerId;
+                Worker worker = await _context.Workers.FindAsync(workerId);
+                ViewBag.WorkerId = workerId;
+                ViewBag.Name = worker.Name;
+                ViewBag.Surname = worker.Surname;
+                ViewBag.Middlename = worker.Middlename;
+                ViewBag.yearEnd = education.yearEnd;
+
+                if (education == null)
+                {
+                    return NotFound();
+                }
+
+                return View(education);
+            }
+            else
             {
                 return NotFound();
             }
-
-            var education = await _context.Educations.FindAsync(id);
-
-            var workerId = education.WorkerId;
-            Worker worker = await _context.Workers.FindAsync(workerId);
-            ViewBag.WorkerId = workerId;
-            ViewBag.Name = worker.Name;
-            ViewBag.Surname = worker.Surname;
-            ViewBag.Middlename = worker.Middlename;
-            ViewBag.yearEnd = education.yearEnd;
-
-            if (education == null)
-            {
-                return NotFound();
-            }
-           
-            return View(education);
         }
 
         // POST: Educations/Edit/5
@@ -180,30 +203,37 @@ namespace Laba1.Controllers
         // GET: Educations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Educations == null)
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+            {
+                if (id == null || _context.Educations == null)
+                {
+                    return NotFound();
+                }
+
+                var education = await _context.Educations.FindAsync(id);
+
+                var workerId = education.WorkerId;
+                Worker worker = await _context.Workers.FindAsync(workerId);
+                ViewBag.WorkerId = workerId;
+                ViewBag.Name = worker.Name;
+                ViewBag.Surname = worker.Surname;
+                ViewBag.Middlename = worker.Middlename;
+                ViewBag.yearEnd = education.yearEnd;
+
+                education = await _context.Educations
+                    .Include(e => e.Worker)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (education == null)
+                {
+                    return NotFound();
+                }
+
+                return View(education);
+            }
+            else
             {
                 return NotFound();
             }
-
-            var education = await _context.Educations.FindAsync(id);
-
-            var workerId = education.WorkerId;
-            Worker worker = await _context.Workers.FindAsync(workerId);
-            ViewBag.WorkerId = workerId;
-            ViewBag.Name = worker.Name;
-            ViewBag.Surname = worker.Surname;
-            ViewBag.Middlename = worker.Middlename;
-            ViewBag.yearEnd = education.yearEnd;
-
-            education = await _context.Educations
-                .Include(e => e.Worker)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (education == null)
-            {
-                return NotFound();
-            }
-
-            return View(education);
         }
 
         // POST: Educations/Delete/5

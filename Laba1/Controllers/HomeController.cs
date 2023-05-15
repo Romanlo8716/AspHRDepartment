@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
+
+
 namespace Laba1.Controllers
 {
     public class HomeController : Controller
@@ -21,8 +23,23 @@ namespace Laba1.Controllers
         public async Task<IActionResult> Index()
         {
             var departments = _context.Departments.Include(b => b.AdressDepartment);
-           
-            return View(await departments.ToListAsync());
+
+            var posts = _context.Posts;
+
+            var numberWorkers = _context.DepartmentsAndPostsOfWorker;
+
+
+
+            ViewBag.DepartmentCount = departments.Count();
+
+            ViewBag.PostCount = posts.Count();
+
+           ViewBag.WorkerCount = numberWorkers.Count();
+
+
+
+
+            return View();
         }
 
         public IActionResult Privacy()

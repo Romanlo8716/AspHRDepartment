@@ -6,12 +6,13 @@
     bool flag = false;
 }
 <link rel="stylesheet" href="~/css/styleWorkerIndex.css" />
-@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+@if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
 {
 
 
 
     <h3 style="text-align:center;">Все сотрудники</h3>
+    <h5 style="text-align:center;">Общее количество: @ViewBag.allWorkers</h5>
 
     <hr style="width:100px; margin: auto;" />
 
@@ -20,7 +21,7 @@
     </p>
     <div class="searchDescWorkerAllWorkers">
         <a asp-action="IndexAllWorkers" style="text-decoration:none;">
-            <div class="DepWorker"><div style="margin-top:5px;">Все сотрудники</div></div>
+            <div class="DepWorker1"><div style="margin-top:5px;">Все сотрудники</div></div>
         </a>
         <a asp-action="GetCandidates" style="text-decoration:none;">
             <div class="DepWorker"><div style="margin-top:5px;">Кандидаты</div></div>
@@ -112,7 +113,7 @@
                             }
 
                         </td>
-                        @if (User.IsInRole("admin"))
+                        @if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
                         {
                            
                               
@@ -124,15 +125,26 @@
                                     <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
                                     <a asp-action="Dismiss" asp-route-id="@item.Id">Уволить</a>
                                 </td>
-                                }
-                                else
+                            }
+                            else
+                            {
+                                if (User.IsInRole("multiAdmin"))
                                 {
-                                 <td>
-                                    <a asp-action="Recover" asp-route-id="@item.Id">Восстановить</a> |
-                                    <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                                </td>
+                                    <td>
+                                        <a asp-action="Recover" asp-route-id="@item.Id">Восстановить</a> |
+                                        <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                                    </td>
                                 }
+                                else if (User.IsInRole("admin"))
+                                {
+                                    <td>
+                                    <a asp-action="Recover" asp-route-id="@item.Id">Восстановить</a> <span> | </span>
+                                    <a asp-action="Intelligence" asp-route-id = "@item.Id" >Подробнее</a>
+                                    </td>
+                                }
+
+                            }
                                 
 
                           

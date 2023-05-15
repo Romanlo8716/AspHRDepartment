@@ -4,16 +4,16 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Данные трудовой книге</h1>
+<h1>Данные трудовой книги</h1>
 <input type="hidden" name="WorkerId" value="@ViewBag.WorkerId" />
 <div class="form-group">
     <h4>
         <label style="width:700px">Сотрудник: @ViewBag.Surname @ViewBag.Name @ViewBag.Middlename</label>
     </h4>
 </div>
-  @if (User.IsInRole("admin"))
+@if (User.IsInRole("admin") || User.IsInRole("megaAdmin"))
                 {
-<p>
+    <p>
     <a asp-action="AddLaborBook" asp-route-id="@ViewBag.WorkerId">Добавить новые данные</a>
     </p>
 }
@@ -61,7 +61,7 @@ else
             <td>
                 @Html.DisplayFor(modelItem => item.numberDocument)
             </td>
-                @if (User.IsInRole("admin"))
+                @if (User.IsInRole("admin") || User.IsInRole("megaAdmin"))
                 {
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |

@@ -18,6 +18,12 @@ namespace Laba1.Controllers
         // GET: Departments
         public async Task<IActionResult> Index()
         {
+            var departments = _context.Departments.Include(b => b.AdressDepartment);
+
+            var numberWorkers = _context.DepartmentsAndPostsOfWorker.ToArray();
+
+            ViewBag.NumberWorkers = numberWorkers;
+
             var publishingDBContext = _context.Departments.Include(b => b.AdressDepartment);
 
             return View(await publishingDBContext.ToListAsync());
@@ -36,6 +42,74 @@ namespace Laba1.Controllers
 
                 var publishingDBContext = _context.Workers;
 
+                var workers = _context.Workers;
+
+                var depAndPost = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post);
+
+                List<Worker> newListWorker = new List<Worker>();
+
+                bool flag = false;
+
+                foreach (var item1 in workers.ToList())
+                {
+
+                    foreach (var item2 in depAndPost.ToList())
+                    {
+                        if (item1.Id == item2.WorkerId)
+                        {
+                            flag = true;
+                            break;
+                        }
+                        else
+                        {
+                            flag = false;
+
+                        }
+
+
+                    }
+                    if (flag == true && item1.dissmisStatus == false)
+                    {
+                        newListWorker.Add(item1);
+                    }
+                    flag = false;
+                }
+
+                ViewBag.WorkersOfCompany = newListWorker.ToArray();
+                ViewBag.Department = depAndPost.ToArray();
+
+
+                List<Worker> newListCandidates = new List<Worker>();
+
+                flag = false;
+
+                foreach (var item1 in workers.ToList())
+                {
+
+                    foreach (var item2 in depAndPost.ToList())
+                    {
+                        if (item1.Id == item2.WorkerId)
+                        {
+                            flag = true;
+                            break;
+                        }
+                        else
+                        {
+                            flag = false;
+                        }
+
+
+                    }
+                    if (flag == false && item1.dissmisStatus == false)
+                    {
+                        newListCandidates.Add(item1);
+                    }
+                    flag = false;
+                }
+
+
+                ViewBag.Candidates = newListCandidates.ToArray();
+
                 return View(publishingDBContext.ToList());
             }
             else
@@ -47,8 +121,6 @@ namespace Laba1.Controllers
         [HttpPost]
         public async Task<IActionResult> AddWorker(int departmentId, int workerId)
         {
-         
-
             return RedirectToAction(nameof(ChooseWorker), new { idDep = departmentId, idWorker = workerId});
         }
 
@@ -67,9 +139,9 @@ namespace Laba1.Controllers
                 }
 
                 ViewBag.NameDep = department.Name;
-                @ViewBag.SurnameWorker = worker.Surname;
-                @ViewBag.NameWorker = worker.Name;
-                @ViewBag.MiddlenameWorker = worker.Middlename;
+                ViewBag.SurnameWorker = worker.Surname;
+                ViewBag.NameWorker = worker.Name;
+                ViewBag.MiddlenameWorker = worker.Middlename;
                 ViewBag.idDep = idDep;
                 ViewBag.idWorker = idWorker;
                 return View(await _context.Posts.ToListAsync());
@@ -231,7 +303,7 @@ namespace Laba1.Controllers
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("megaAdmin") || User.IsInRole("coach") ||User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Departments == null)
                 {
@@ -315,7 +387,7 @@ namespace Laba1.Controllers
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Departments == null)
                 {
@@ -379,7 +451,7 @@ namespace Laba1.Controllers
         // GET: Departments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Departments == null)
                 {

@@ -144,6 +144,8 @@ namespace Laba1.Areas.Identity.Pages.Account
                    
                     _logger.LogInformation("User created a new account with password.");
 
+                    if (!await _roleManager.RoleExistsAsync("multiAdmin"))
+                        await _roleManager.CreateAsync(new IdentityRole("multiAdmin"));
                     if (!await _roleManager.RoleExistsAsync("admin"))
                         await _roleManager.CreateAsync(new IdentityRole("admin"));
                     if (!await _roleManager.RoleExistsAsync("coach"))

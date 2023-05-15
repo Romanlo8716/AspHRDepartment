@@ -80,7 +80,7 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> AddPost(int? idDep, int? idWorker)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
 
 
@@ -116,7 +116,7 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> ConfirmSelection(int? idDep, int? idWorker, int? idPost)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 Department department = await _context.Departments.FindAsync(idDep);
                 Worker worker = await _context.Workers.FindAsync(idWorker);
@@ -168,7 +168,7 @@ namespace Laba1.Controllers
 
 
                     await _context.SaveChangesAsync();
-                    return Redirect($"~/Workers/Intelligence/{workerId}");
+                    return Redirect($"~/Workers/IndexAllWorkers");
 
                 }
                 return View(departmentsAndPostsOfWorker);
@@ -220,29 +220,38 @@ namespace Laba1.Controllers
         // GET: DepartmentsAndPostsOfWorkers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.DepartmentsAndPostsOfWorker == null)
+            if (User.IsInRole("admin") || User.IsInRole("megaAdmin"))
+            {
+
+
+                if (id == null || _context.DepartmentsAndPostsOfWorker == null)
+                {
+                    return NotFound();
+                }
+
+                var departmentsAndPostsOfWorker = await _context.DepartmentsAndPostsOfWorker.FindAsync(id);
+
+                int workerId = departmentsAndPostsOfWorker.WorkerId;
+
+                Worker worker = await _context.Workers.FindAsync(workerId);
+
+                ViewBag.NameWorker = worker.Name;
+                ViewBag.SurnameWorker = worker.Surname;
+                ViewBag.MiddlenameWorker = worker.Middlename;
+
+                if (departmentsAndPostsOfWorker == null)
+                {
+                    return NotFound();
+                }
+                ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", departmentsAndPostsOfWorker.DepartmentId);
+                ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", departmentsAndPostsOfWorker.PostId);
+                ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Middlename", departmentsAndPostsOfWorker.WorkerId);
+                return View(departmentsAndPostsOfWorker);
+            }
+            else
             {
                 return NotFound();
             }
-
-            var departmentsAndPostsOfWorker = await _context.DepartmentsAndPostsOfWorker.FindAsync(id);
-
-            int workerId = departmentsAndPostsOfWorker.WorkerId;
-
-            Worker worker = await _context.Workers.FindAsync(workerId);
-
-            ViewBag.NameWorker = worker.Name;
-            ViewBag.SurnameWorker = worker.Surname;
-            ViewBag.MiddlenameWorker = worker.Middlename;
-
-            if (departmentsAndPostsOfWorker == null)
-            {
-                return NotFound();
-            }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", departmentsAndPostsOfWorker.DepartmentId);
-            ViewData["PostId"] = new SelectList(_context.Posts, "Id", "Title", departmentsAndPostsOfWorker.PostId);
-            ViewData["WorkerId"] = new SelectList(_context.Workers, "Id", "Middlename", departmentsAndPostsOfWorker.WorkerId);
-            return View(departmentsAndPostsOfWorker);
         }
 
         // POST: DepartmentsAndPostsOfWorkers/Edit/5

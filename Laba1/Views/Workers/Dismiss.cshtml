@@ -5,55 +5,146 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Увольнение</h1>
+<script src="/js/intlTelInput.min.js" charset="utf-8"></script>
 
-<h3>Вы действительно хотите уволить сотрудника?</h3>
-<div>
-    <h4>Сотрудник</h4>
-    <hr />
-    <div style="margin-left:100px; position:absolute;">
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Surname)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Surname)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Middlename)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Middlename)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Phone)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Gender)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Gender)
-            </dd>
-            @*<dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Photo)
-            </dt>*@
-        </dl>
+<link rel="stylesheet" href="~/css/styleWorkerIntelligence.css" />
+
+<h2> Вы действительно хотите уволить сотрудника?</h2>
+<hr>
+<h2 class="nameWorker">@Html.DisplayFor(model => model.Surname)  @Html.DisplayFor(model => model.Name)  @Html.DisplayFor(model => model.Middlename)</h2>
+
+
+
+<div class="ourInform">
+
+    <div class="boxImage">
+
+        <input type="hidden" name="Photo" value="@Model.Photo" />
+        @if (ViewBag.Photodata != null)
+        {
+            <img class="image"
+                 src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
+        }
+
     </div>
-    <input type="hidden" name="Photo" value="@Model.Photo" />
-    @if (ViewBag.Photodata != null)
-    {
-        <img class="mt-4 mb-4" width="200"
-             src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
-    }
+
+    <div class="lickInform">
+        <h5 class="logoLichInform">Личные данные</h5>
+        <div class="boxLichInform">
+            <div style="margin-top:15px; margin-left:15px;">
+                <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.DateOfBirth):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Model.DateOfBirth.ToString("d")
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.Gender):</div>
+                <div style="font-size:16px; display:inline-block;margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.Gender)
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;">Место проживания:</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.CityHabitation), @Html.DisplayFor(model => model.StreetHabitation), @Html.DisplayFor(model => model.HouseHabitation)
+                </div>
+                <br>
+                <br>
+
+
+                <h6 style="text-align:center;">Данные о семье</h6>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.FamilyStatus):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.FamilyStatus)
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.Children):</div>
+                <div style="font-size:16px; display:inline-block;margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.Children)
+                </div>
+                <br>
+                <br>
+
+                <h6 style="text-align:center;">Контактная информация </h6>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.Phone):</div>
+                <div style="font-size:16px; display:inline-block;margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.Phone)
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.Email):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.Email)
+                </div>
+                <br>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="passInform">
+        <h5 class="logoLichInform">Паспортные данные</h5>
+        <div class="boxLichInform">
+            <div style="margin-top:15px; margin-left:15px;">
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.SeriesPass):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.SeriesPass)
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.NumberPass):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.NumberPass)
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;">  @Html.DisplayNameFor(model => model.IssuedByWhom):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.IssuedByWhom)
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.DateOfIssue):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Model.DateOfIssue.ToString("d")
+                </div>
+                <br>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.DivisionCode):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.DivisionCode)
+                </div>
+                <br>
+                <br>
+
+                <h6 style="text-align:center;">СНИЛС</h6>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.NumberSnils):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.NumberSnils)
+                </div>
+                <br>
+                <br>
+
+                <h6 style="text-align:center;">ИНН </h6>
+
+                <div style="color:rgb(108,112,115);display:inline-block;"> @Html.DisplayNameFor(model => model.NumberInn):</div>
+                <div style="font-size:16px; display:inline-block; margin-right:40px;float: right;">
+                    @Html.DisplayFor(model => model.NumberInn)
+                </div>
+                <br>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top:-100px; margin-left:40px;">
 
     <form asp-action="Dismiss">
         <input type="hidden" asp-for="Id" />
@@ -85,7 +176,10 @@
         <input type="hidden" name="DescriptionWorker" value="@Model?.DescriptionWorker" />
         <input type="hidden" name="dissmisStatus" value="true" />
 
+
         <input type="submit" value="Уволить" class="btn btn-danger" /> |
-        <a asp-action="Index">Вернуться назад</a>
+        <a asp-action="IndexAllWorkers">Вернуться назад</a>
     </form>
+
 </div>
+

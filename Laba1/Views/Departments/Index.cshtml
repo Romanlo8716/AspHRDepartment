@@ -1,73 +1,137 @@
 ﻿@model IEnumerable<Laba1.Models.Department>
-
+<link rel="stylesheet" href="~/css/styleDepartmentIndex.css" />
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int k = 0;
 }
 
-@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest") || User.IsInRole("multiAdmin"))
 {
 
 
-<h1>Отделы</h1>
-  @if (User.IsInRole("admin"))
+    <h3 style="text-align:center;">Отделы</h3>
+
+    <hr style="width:100px; margin: auto;" />
+    @if (User.IsInRole("multiAdmin"))
                 {
-<p>
-    <a asp-action="Create">Добавить отдел</a>
-    </p>
+        <p style="text-align:center;">
+            <a asp-action="Create">Добавить отдел</a>
+        </p>
 }
 else
 {
     
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.idAdressDepartment)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdressDepartment.City)
-                @Html.DisplayFor(modelItem => item.AdressDepartment.Street)
-                @Html.DisplayFor(modelItem => item.AdressDepartment.House)
-            </td>
-                @if (User.IsInRole("admin"))
-                {
-            <td>
-                <a asp-action="AddWorker" style="color:green" asp-route-id="@item.Id">Добавить сотрудника</a> | 
-                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a> 
+    @if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("multiAdmin"))
+    {
+
+
+        <div class="middle">
+            @foreach (var item in Model)
+            {
+                <a asp-action="Details" asp-route-id="@item.Id" class="boxDepLink" >
+                    <div class="boxDepartment">
+
+
+
+
+                        <div class="descriptionDep">
+
+                            <div style="display:inline-block; width:300px;">
+                                <div class="nameDepartment"> @item.Name</div>
+                                <div class="numberWorkers">
+                                    Cотрудников:
+                                    @foreach (var item2 in ViewBag.NumberWorkers)
+                                    {
+                                        if (item.Id == item2.DepartmentId)
+                                        {
+                                            k++;
+                                        }
+                                    }
+                                    @k
+                                    @if (k > 0)
+                                    {
+                                        k = 0;
+                                    }
+                                </div>
+                            </div>
+
+                            <div style="display:inline-block; margin-left:10px; width:260px;">
+                                <div class="phoneDep">@item.Phone</div>
+                                <div class="adressDep">@item.AdressDepartment.City, @item.AdressDepartment.Street, @item.AdressDepartment.House</div>
+                            </div>
+
+
+
+
+
+                            @if (User.IsInRole("multiAdmin"))
+                            {
+                                <div style="display:inline-block;">
+                                    <a asp-action="AddWorker" asp-route-id="@item.Id" class="btn btn-primary" style="margin-top:-30px;">Добавить сотрудника</a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary" style="margin-top:-30px">Изменить</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" style="margin-top:-30px">Удалить</a>
+                                </div>
+                            }
+                            else if (User.IsInRole("admin"))
+                            {
+                                <a asp-action="AddWorker" asp-route-id="@item.Id" class="btn btn-primary" style="margin-top:-30px;">Добавить сотрудника</a>
+                            }
+
+                        </div>
+
+                    </div>
+                </a>
+            }
+        </div>
+    }
+    else if (User.IsInRole("guest"))
+    {
+        <div class="middle">
+            @foreach (var item in Model)
+            {
+               
+                    <div class="boxDepartment">
+
+
+
+
+                        <div class="descriptionDep">
+
+                            <div style="display:inline-block; width:300px;">
+                                <div class="nameDepartment"> @item.Name</div>
+                                <div class="numberWorkers">
+                                    Cотрудников:
+                                    @foreach (var item2 in ViewBag.NumberWorkers)
+                                    {
+                                        if (item.Id == item2.DepartmentId)
+                                        {
+                                            k++;
+                                        }
+                                    }
+                                    @k
+                                    @if (k > 0)
+                                    {
+                                        k = 0;
+                                    }
+                                </div>
+                            </div>
+
+                            <div style="display:inline-block; margin-left:10px; width:260px;">
+                                <div class="phoneDep">@item.Phone</div>
+                                <div class="adressDep">@item.AdressDepartment.City, @item.AdressDepartment.Street, @item.AdressDepartment.House</div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 
-                    </td>
-                }
-                else
-                {
-                    
-                }
-        </tr>
+            }
+        </div>
+    }
 }
-    </tbody>
-</table>
-}
+
 else{
 
 

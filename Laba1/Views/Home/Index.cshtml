@@ -1,8 +1,8 @@
-﻿@model IEnumerable<Laba1.Models.Department>
-
+﻿
+<link rel="stylesheet" href="~/css/styleHomeIndex.css" />
 @{
     ViewData["Title"] = "Home Page";
-    string address = "";
+  
 }
 
 <meta charset="utf-8">
@@ -12,30 +12,66 @@
 
 <div class="text-center">
     <h1 class="display-4">Добро пожаловать!</h1>
-    <p>Сайт, предназначенный для внутреннего пользования отдела кадров.</p>
+    <br>
+    <h5 class="display-5">Выберите, с чем Вы хотите работать.</h5>
+    <hr>
+  
     <br />
-    <h3 class="display-5">Отделы компании</h3>
+  
 
     <div class="middle">
-        
-    @foreach (var item in Model)
-    {
-          
-            
-            <a asp-controller="Departments" asp-action="Details" asp-route-id="@item.Id" class="boxDepLink">
-       <div class="boxDepartment">
-           <div class="logoDepartment">
-               
-               <div class="nameDepartment"> @Html.DisplayFor(modelItem => item.Name)</div>
-           </div>
-           <div  class="mapAdress">
-                      
-           </div>
-           
 
-       </div>
-       </a>
-    }
+      
+        <a asp-controller="Workers" asp-action="Index" class="boxDepLink">
+            <div class="boxDepartment">
+                <div class="logoDepartment">
+                    <div class="nameDepartment">Наш персонал</div>
+                </div>
+                <div class="descriptionDep">
+                    <img style="width:60px; height:60px; margin-top:30px" src="~/images/workersBlack.png" />
+
+                    <div class="count">Количество записей: @ViewBag.WorkerCount</div>
+                </div>
+
+
+            </div>
+        </a>
+
+        <a asp-controller="Departments" asp-action="Index" class="boxDepLink">
+            <div class="boxDepartment">
+                <div class="logoDepartment">
+
+                    <div class="nameDepartment">Отделы</div>
+                </div>
+                <div class="descriptionDep">
+                    <img style="width:60px; height:60px; margin-top:30px" src="~/images/departmentBlack.png" />
+
+                    <div class="count">Количество записей: @ViewBag.DepartmentCount</div>
+                </div>
+
+
+            </div>
+        </a>
+
+        <a asp-controller="Posts" asp-action="Index" class="boxDepLink">
+            <div class="boxDepartment">
+                <div class="logoDepartment">
+
+                    <div class="nameDepartment">Должности</div>
+                </div>
+                <div class="descriptionDep">
+                    <img style="width:60px; height:60px; margin-top:30px" src="~/images/postBlack.png" />
+
+                    <div class="count">Количество записей: @ViewBag.PostCount</div>
+                </div>
+
+
+            </div>
+        </a>
+        
+ <br>
+    <hr>
+        <p style="font-size: 23px;">Сайт, предназначенный для внутреннего пользования сотрудников компании.</p>
     </div>
 </div>
 

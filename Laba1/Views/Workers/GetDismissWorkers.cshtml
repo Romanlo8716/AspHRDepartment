@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/styleWorkerIndex.css" />
-@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest") || User.IsInRole("multiAdmin"))
 {
 
 
 
     <h3 style="text-align:center;">Уволенные сотрудники</h3>
+    <h5 style="text-align:center;">Общее количество: @ViewBag.allWorkers</h5>
 
     <hr style="width:100px; margin: auto;" />
 
@@ -28,7 +29,7 @@
             <div class="DepWorker"><div style="margin-top:5px;">Сотрудники компании</div></div>
         </a>
         <a asp-action="GetDismissWorkers" style="text-decoration:none;">
-            <div class="DepWorker"><div style="margin-top:5px;">Уволенные сотрудники</div></div>
+            <div class="DepWorker1"><div style="margin-top:5px;">Уволенные сотрудники</div></div>
         </a>
 
 
@@ -77,7 +78,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Phone)
                         </td>
-                        @if (User.IsInRole("admin"))
+                        @if (User.IsInRole("multiAdmin"))
                         {
                             <td>
 
@@ -87,9 +88,12 @@
 
                             </td>
                         }
-                        else
+                        else if(User.IsInRole("admin"))
                         {
-
+                        <td>
+                            <a asp-action="Recover" asp-route-id="@item.Id">Восстановить</a> |
+                            <a asp-action="Intelligence" asp-route-id="@item.Id">Подробнее</a>
+                        </td>
                         }
                     </tr>
                 }

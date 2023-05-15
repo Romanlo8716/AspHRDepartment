@@ -16,7 +16,15 @@ namespace Laba1.Controllers
         // GET: AdressDepartments
         public async Task<IActionResult> Index()
         {
-              return View(await _context.AdressDepartments.ToListAsync());
+            if(User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("megaAdmin"))
+            {
+                return View(await _context.AdressDepartments.ToListAsync());
+            }
+            else
+            {
+                return NotFound();
+            }
+               
         }
 
         // GET: AdressDepartments/Details/5
@@ -48,7 +56,7 @@ namespace Laba1.Controllers
         // GET: AdressDepartments/Create
         public IActionResult Create()
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("multiAdmin"))
             {
                 return View();
             }
@@ -77,7 +85,7 @@ namespace Laba1.Controllers
         // GET: AdressDepartments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.AdressDepartments == null)
                 {

@@ -1,0 +1,47 @@
+﻿.body {
+    position: center;
+}
+
+.middle {
+}
+
+.boxAdressDepartment {
+    width: 800px;
+    height: 70px;
+    background-color: white;
+    margin-top: 30px;
+    border-radius: 10px;
+    border: 1px solid rgb(190,190,190);
+    margin-left: 250px;
+    transition: transform .2s;
+}
+
+    .boxAdressDepartment:hover {
+        background-color: rgb(240,240,240);
+        transform: scale(1.02);
+    }
+
+.descriptionAdressDepartment {
+    color: rgb(130,130,130);
+}
+
+.city {
+    color: rgb(50,50,50);
+    margin-left: 20px;
+    display:inline-block;
+    margin-top: 10px;
+   
+}
+
+
+.street {
+    color: rgb(80,80,80);
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.house {
+    color: rgb(80,80,80);
+    margin-left: 20px;
+    display: inline-block;
+}

@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/styleWorkerIndex.css" />
-@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest") || User.IsInRole("multiAdmin"))
 {
 
 
 
     <h3 style="text-align:center;">Сотрудники компании</h3>
+    <h5 style="text-align:center;">Общее количество: @ViewBag.allWorkers</h5>
 
     <hr style="width:100px; margin: auto;" />
 
@@ -25,7 +26,7 @@
             <div class="DepWorker"><div style="margin-top:5px;">Кандидаты</div></div>
         </a>
         <a asp-action="GetWorkersOfCompany" style="text-decoration:none;">
-            <div class="DepWorker"><div style="margin-top:5px;">Сотрудники компании</div></div>
+            <div class="DepWorker1"><div style="margin-top:5px;">Сотрудники компании</div></div>
         </a>
         <a asp-action="GetDismissWorkers" style="text-decoration:none;">
             <div class="DepWorker"><div style="margin-top:5px;">Уволенные сотрудники</div></div>
@@ -37,65 +38,66 @@
     <br>
     //@Html.DisplayFor(modelItem => item.Name)
     <div class="middle">
-
-           @foreach (var department in Model.GroupBy(g => g.Department))
-                {
-                    <div class="departmentWorker">@department.Key.Name</div>
-                      <table class="table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Worker.Surname)
+                       Фамилия
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Worker.Name)
+                        Имя
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Worker.Middlename)
+                        Отчество
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Worker.Gender)
+                        Пол
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Worker.Phone)
+                       Телефон
                     </th>
-                        <th>
-                           Должность
-                        </th>
+                    <th>
+                        Отделы
+                    </th>
                     <th></th>
                 </tr>
             </thead>
-                    @foreach (var item in department.ToArray())
-                    {
-      
             <tbody>
-             
+        @foreach(var workers in ViewBag.Workers)
+        {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Worker.Surname)
+                            @workers.Surname
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Worker.Name)
+                            @workers.Name
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Worker.Middlename)
+                            @workers.Middlename
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Worker.Gender)
+                            @workers.Gender
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Worker.Phone)
+                            @workers.Phone
                         </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Post.Title)
-                            </td>
-                        @if (User.IsInRole("admin"))
+                        <td>
+                            @foreach(var department in ViewBag.Department)
+                            {
+                                
+                                @if(workers.Id == department.WorkerId)
+                                {
+                                    <a style="margin-top:5px;" class="btn btn-primary" asp-controller="Departments" asp-action="Details" asp-route-id="@department.DepartmentId">@department.Department.Name : @department.Post.Title</a>
+                                }
+                                
+                            }
+                        </td>
+                        @if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
                         {
                             <td>
-
-                                <a asp-action="Edit" asp-route-id="@item.Worker.Id">Изменить</a> |
-                                <a asp-action="Intelligence" asp-route-id="@item.Worker.Id">Подробнее</a> |
-                                <a asp-action="Dismiss" asp-route-id="@item.Worker.Id">Уволить</a>
+                                <a asp-action="Edit" asp-route-id="@workers.Id">Изменить</a> |
+                                <a asp-action="Intelligence" asp-route-id="@workers.Id">Подробнее</a> |
+                                <a asp-action="Dismiss" asp-route-id="@workers.Id">Уволить</a>
 
                             </td>
                         }
@@ -104,13 +106,11 @@
 
                         }
                     </tr>
-              
-            </tbody>
-
-                }
-        </table>
-            
         }
+            </tbody>
+        </table>
+
+      
     </div>
 }
 else

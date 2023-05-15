@@ -22,26 +22,33 @@ namespace Laba1.Controllers
         // GET: MedicalBooks
         public async Task<IActionResult> Index(int? Id)
         {
-            Worker worker = await _context.Workers.FindAsync(Id);
-            ViewBag.WorkerId = Id;
-            ViewBag.Name = worker.Name;
-            ViewBag.Surname = worker.Surname;
-            ViewBag.Middlename = worker.Middlename;
-            ViewBag.Id = Id;
+            if (!User.IsInRole("guest"))
+            {
+                Worker worker = await _context.Workers.FindAsync(Id);
+                ViewBag.WorkerId = Id;
+                ViewBag.Name = worker.Name;
+                ViewBag.Surname = worker.Surname;
+                ViewBag.Middlename = worker.Middlename;
+                ViewBag.Id = Id;
 
-            if (Id == null || _context.LaborBook == null)
+                if (Id == null || _context.LaborBook == null)
+                {
+                    return NotFound();
+                }
+
+                var appDBContext = _context.MedicalBook.Include(e => e.Worker).Where(e => Id == e.WorkerId);
+                return View(await appDBContext.ToListAsync());
+            }
+            else
             {
                 return NotFound();
             }
-
-            var appDBContext = _context.MedicalBook.Include(e => e.Worker).Where(e => Id == e.WorkerId);
-            return View(await appDBContext.ToListAsync());
         }
 
         // GET: MedicalBooks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.MedicalBook == null)
                 {
@@ -75,7 +82,7 @@ namespace Laba1.Controllers
 
         public IActionResult AddMedicalBook(int? Id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (Id == null || _context.MedicalBook == null)
                 {
@@ -124,7 +131,7 @@ namespace Laba1.Controllers
         // GET: MedicalBooks/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.MedicalBook == null)
                 {
@@ -194,7 +201,7 @@ namespace Laba1.Controllers
         // GET: MedicalBooks/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.MedicalBook == null)
                 {

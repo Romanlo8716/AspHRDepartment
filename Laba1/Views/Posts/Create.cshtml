@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Добавить</h1>
+<h1>Добавление должности</h1>
 
-<h4>Должность</h4>
+<h4>Введите данные: @ViewBag.DepId</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+                <input asp-for="Title" class="form-control" value="@ViewBag.DepId" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -24,6 +24,8 @@
                 <span asp-validation-for="Salary" class="text-danger"></span>
             </div>
             <div class="form-group">
+                
+
                 <input type="submit" value="Добавить" style="margin-top:20px" class="btn btn-primary" />
             </div>
         </form>

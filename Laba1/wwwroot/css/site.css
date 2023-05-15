@@ -17,46 +17,6 @@ body {
   margin-bottom: 60px;
 }
 
-.boxDepartment {
-    width: 350px;
-    height: 400px;
-    background-color: white;
-   
-    margin-top: 30px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-right:30px;
-    border: 1px solid rgb(150,150,150);
-    
-}
-
-    .boxDepartment:hover {
-        background-color: rgb(240,240,240);
-    }
-
-.logoDepartment {
-    height: 70px;
-    background-color: rgb(105,169,214);
-    border-top-left-radius: 10px;
-    border-top-right-radius:10px;
-}
-
-.nameDepartment{
-   
-   
-
-    position:center;
-    color:white;
-    font-size:22px
-}
-
-.mapAdress {
-    width: 350px;
-    height: 300px;
-    display: inline-block;
-    margin-right: 30px;
-
-}
 
 .custom-btn {
     width: 130px;
@@ -114,6 +74,7 @@ body {
 
 .boxDepLink {
     text-decoration: none;
+    
 }
 
 /* ќформление панели */

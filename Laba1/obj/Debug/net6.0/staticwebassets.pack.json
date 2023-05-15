@@ -45,8 +45,24 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleAdressDepartmentIndex.css",
+      "PackagePath": "staticwebassets\\css\\styleAdressDepartmentIndex.css"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleDepartmentIndex.css",
+      "PackagePath": "staticwebassets\\css\\styleDepartmentIndex.css"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleHomeIndex.css",
+      "PackagePath": "staticwebassets\\css\\styleHomeIndex.css"
+    },
+    {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleHomePage.css",
       "PackagePath": "staticwebassets\\css\\styleHomePage.css"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\stylePostIndex.css",
+      "PackagePath": "staticwebassets\\css\\stylePostIndex.css"
     },
     {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleWorkerCreate.css",
@@ -73,6 +89,10 @@
       "PackagePath": "staticwebassets\\images\\dep.png"
     },
     {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\departmentBlack.png",
+      "PackagePath": "staticwebassets\\images\\departmentBlack.png"
+    },
+    {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\departmentWhite.png",
       "PackagePath": "staticwebassets\\images\\departmentWhite.png"
     },
@@ -81,8 +101,16 @@
       "PackagePath": "staticwebassets\\images\\menu-icon.png"
     },
     {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\postBlack.png",
+      "PackagePath": "staticwebassets\\images\\postBlack.png"
+    },
+    {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\postWhite.png",
       "PackagePath": "staticwebassets\\images\\postWhite.png"
+    },
+    {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\workersBlack.png",
+      "PackagePath": "staticwebassets\\images\\workersBlack.png"
     },
     {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\images\\workersWhite.png",

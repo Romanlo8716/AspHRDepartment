@@ -40,12 +40,15 @@
                         </div>
                     </a>
                     <hr class="dropdown-divider">
-                    <a class="menuItem" asp-area="" asp-controller="AdressDepartments" asp-action="Index">
-                        <div style="margin-top:7px">
-                            <img style="width:30px; height:30px" src="~/images/adressDep.png" />
-                            Адреса отделов
-                        </div>
-                    </a>
+                    @if (User.IsInRole("admin") || User.IsInRole("megaAdmin"))
+                    {
+                        <a class="menuItem" asp-area="" asp-controller="AdressDepartments" asp-action="Index">
+                            <div style="margin-top:7px">
+                                <img style="width:30px; height:30px" src="~/images/adressDep.png" />
+                                Адреса отделов
+                            </div>
+                        </a>
+                    }
                 </div>
                 <div class="side-button-1-wr">
                     <label class="side-button-1" for="side-checkbox">
@@ -58,7 +61,7 @@
                     </label>
                 </div>
                 
-                <a class="navbar-brand" style="margin-left:70px" asp-area="" asp-controller="Home" asp-action="Index">Отдел кадров</a>
+                <a class="navbar-brand" style="margin-left:70px" asp-area="" asp-controller="Home" asp-action="Index">Insurance company</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -76,27 +79,39 @@
                     <button class="custom-btn btn-16">Должности</button>
                 </a>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                   
-                    <ul class="navbar-nav flex-grow-1">
-                       
-                          <li class="nav-item dropdown">
-                            
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Страницы отдела кадров
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" asp-area="" asp-controller="Workers" asp-action="IndexAllWorkers">Все сотрудники</a></li>
-            <li><a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="Index">Должности</a></li>
-            <li><a class="dropdown-item" asp-area="" asp-controller="Departments" asp-action="Index">Отделы</a></li>
-             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" asp-area="" asp-controller="AdressDepartments" asp-action="Index">Адреса отделов</a></li>
-           
-          </ul>
-        </li>
-                    </ul>
-                 
-                </div>
+                @if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+                {
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                        <ul class="navbar-nav flex-grow-1">
+
+                            <li class="nav-item dropdown">
+
+
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Страницы отдела кадров
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Workers" asp-action="IndexAllWorkers">Все сотрудники</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Posts" asp-action="Index">Должности</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Departments" asp-action="Index">Отделы</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="AdressDepartments" asp-action="Index">Адреса отделов</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                }
+                else
+                {
+                  
+                }
+
+               
+
+
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial"></partial>
                 </div>

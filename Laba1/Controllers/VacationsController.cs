@@ -21,25 +21,32 @@ namespace Laba1.Controllers
         // GET: Vacations
         public async Task<IActionResult> Index(int? Id)
         {
-            Worker worker = await _context.Workers.FindAsync(Id);
-            ViewBag.WorkerId = Id;
-            ViewBag.Name = worker.Name;
-            ViewBag.Surname = worker.Surname;
-            ViewBag.Middlename = worker.Middlename;
-            ViewBag.Id = Id;
+            if (!User.IsInRole("guest"))
+            {
+                Worker worker = await _context.Workers.FindAsync(Id);
+                ViewBag.WorkerId = Id;
+                ViewBag.Name = worker.Name;
+                ViewBag.Surname = worker.Surname;
+                ViewBag.Middlename = worker.Middlename;
+                ViewBag.Id = Id;
 
-            if (Id == null || _context.Vacations == null)
+                if (Id == null || _context.Vacations == null)
+                {
+                    return NotFound();
+                }
+                var appDBContext = _context.Vacations.Include(e => e.Worker).Where(e => Id == e.WorkerId);
+                return View(await appDBContext.ToListAsync());
+            }
+            else
             {
                 return NotFound();
             }
-            var appDBContext = _context.Vacations.Include(e => e.Worker).Where(e => Id == e.WorkerId);
-            return View(await appDBContext.ToListAsync());
         }
 
         // GET: Vacations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Vacations == null)
                 {
@@ -77,7 +84,7 @@ namespace Laba1.Controllers
 
         public IActionResult AddVacation(int? Id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (Id == null || _context.Vacations == null)
                 {
@@ -123,7 +130,7 @@ namespace Laba1.Controllers
         // GET: Vacations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Vacations == null)
                 {
@@ -195,7 +202,7 @@ namespace Laba1.Controllers
         // GET: Vacations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Vacations == null)
                 {

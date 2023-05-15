@@ -1,70 +1,84 @@
 ﻿@model IEnumerable<Laba1.Models.Post>
-
+<link rel="stylesheet" href="~/css/stylePostIndex.css" />
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest"))
+@if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("guest") || User.IsInRole("multiAdmin"))
 {
-    
 
-<h1>Должности</h1>
-@if (User.IsInRole("admin"))
+
+    <h3 style="text-align:center;">Должности</h3>
+
+    <hr style="width:100px; margin: auto;" />
+    @if (User.IsInRole("multiAdmin"))
                 {
-<p>
-    <a asp-action="Create">Добавить должность</a>
-    </p>
+        <p style="text-align:center;">
+            <a asp-action="Create">Добавить должность</a>
+        </p>
 }
 else
 {
     
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Salary)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salary)
-            </td>
-                @if (User.IsInRole("admin"))
-                {
-                    <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Изменить</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
-                    </td>
-                }
-                else if (User.IsInRole("coach"))
-                {
-                    <td>
-                       
-                        <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> 
-                        
-                    </td>
-                }
-                else
-                {
-                    
-                }
-        </tr>
-}
-    </tbody>
-</table>
+    @if (User.IsInRole("admin") || User.IsInRole("coach") || User.IsInRole("multiAdmin"))
+    {
+        <div class="middle">
+            @foreach (var item in Model)
+            {
+                <a asp-action="Details" asp-route-id="@item.Id" class="boxDepLink">
+                    <div class="boxPost">
+
+                        <div class="descriptionPost">
+
+                            <div style="display:inline-block; width:500px;">
+                                <div class="namePost"> @item.Title</div>
+                                <div class="salaryPost">Базовая ставка: @item.Salary рублей</div>
+                            </div>
+
+
+
+
+
+
+
+                            @if (User.IsInRole("multiAdmin"))
+                            {
+                                <div style="display:inline-block;">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary" style="margin-top:-40px">Изменить</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" style="margin-top:-40px">Удалить</a>
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                </a>
+            }
+        </div>
+    }
+    else if (User.IsInRole("guest"))
+    {
+        <div class="middle">
+            @foreach (var item in Model)
+            {
+               
+                    <div class="boxPost">
+
+                        <div class="descriptionPost">
+
+                            <div style="display:inline-block; width:500px;">
+                                <div class="namePost"> @item.Title</div>
+                                <div class="salaryPost">Базовая ставка: @item.Salary рублей</div>
+                            </div>
+                        </div>
+
+                    </div>
+               
+            }
+        </div>
+    }
 }
 else{
     <div class="text-center">
