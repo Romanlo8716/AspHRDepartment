@@ -104,8 +104,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNBbmRQb3N0c09mV29ya2Vyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/AddPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQWRkUG9zdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/3 курс/Asp/Laba1/Laba1/Views/Departments/AddWorker.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQWRkV29ya2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ChoosePost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcQ2hvb3NlUG9zdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ChooseWorker.cshtml]
@@ -136,8 +144,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRWRpdFdvcmtlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ErrorAddPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRXJyb3JBZGRQb3N0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ErrorAddWorker.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRXJyb3JBZGRXb3JrZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/Departments/ErrorCountNull.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0bWVudHNcRXJyb3JDb3VudE51bGwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/3 курс/Asp/Laba1/Laba1/Views/Departments/Index.cshtml]
@@ -222,6 +238,30 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/3 курс/Asp/Laba1/Laba1/Views/Militarys/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlsaXRhcnlzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/PostsOfDepartments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNPZkRlcGFydG1lbnRzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/PostsOfDepartments/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNPZkRlcGFydG1lbnRzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/PostsOfDepartments/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNPZkRlcGFydG1lbnRzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/PostsOfDepartments/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNPZkRlcGFydG1lbnRzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/PostsOfDepartments/ErrorCloseVacation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNPZkRlcGFydG1lbnRzXEVycm9yQ2xvc2VWYWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/3 курс/Asp/Laba1/Laba1/Views/PostsOfDepartments/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNPZkRlcGFydG1lbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/3 курс/Asp/Laba1/Laba1/Views/Posts/Create.cshtml]

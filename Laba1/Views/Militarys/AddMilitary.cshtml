@@ -10,12 +10,29 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AddMilitary" asp-route-id="@Model?.Id">
-        
+
             <input type="hidden" name="Name" value="@Model?.Name" />
             <input type="hidden" name="Surname" value="@Model?.Surname" />
             <input type="hidden" name="Middlename" value="@Model?.Middlename" />
             <input type="hidden" name="Phone" value="@Model?.Phone" />
+            <input type="hidden" name="DateOfBirth" value="@Model?.DateOfBirth" />
+            <input type="hidden" name="CityHabitation" value="@Model?.CityHabitation" />
+            <input type="hidden" name="StreetHabitation" value="@Model?.StreetHabitation" />
+            <input type="hidden" name="HouseHabitation" value="@Model?.HouseHabitation" />
+            <input type="hidden" name="FamilyStatus" value="@Model?.FamilyStatus" />
+            <input type="hidden" name="Children" value="@Model?.Children" />
+            <input type="hidden" name="Email" value="@Model?.Email" />
+            <input type="hidden" name="SeriesPass" value="@Model?.SeriesPass" />
+            <input type="hidden" name="NumberPass" value="@Model?.NumberPass" />
+            <input type="hidden" name="IssuedByWhom" value="@Model?.IssuedByWhom" />
+            <input type="hidden" name="DateOfIssue" value="@Model?.DateOfIssue" />
+            <input type="hidden" name="DivisionCode" value="@Model?.DivisionCode" />
+            <input type="hidden" name="NumberSnils" value="@Model?.NumberSnils" />
+            <input type="hidden" name="NumberInn" value="@Model?.NumberInn" />
             <input type="hidden" name="Gender" value="@Model?.Gender" />
+            <input type="hidden" name="Photo" value="@Model?.Photo" />
+            <input type="hidden" name="DescriptionWorker" value="@Model?.DescriptionWorker" />
+            <input type="hidden" name="dissmisStatus" value="@Model?.dissmisStatus" />
 
 
             <div class="form-group">
@@ -37,12 +54,31 @@
             </div>
             <div class="form-group">
                 <label asp-for="shelf_life" class="control-label"></label>
-                <input asp-for="shelf_life" class="form-control" />
+                <select asp-for="shelf_life" class="form-select" style="width:300px;">
+
+                    <option value="А1">А1</option>
+                    <option value="А2">А2</option>
+                    <option value="А3">А3</option>
+                    <option value="А4">А4</option>
+                    <option value="Б1">Б1</option>
+                    <option value="Б2">Б2</option>
+                    <option value="Б3">Б3</option>
+                    <option value="Б4">Б4</option>
+                    <option value="В">В</option>
+                    <option value="Г">Г</option>
+                    <option value="Д">Д</option>
+                </select>
                 <span asp-validation-for="shelf_life" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="stock_category" class="control-label"></label>
-                <input asp-for="stock_category" class="form-control" />
+                <select asp-for="stock_category" class="form-select" style="width:300px;">
+
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+
+                </select>
                 <span asp-validation-for="stock_category" class="text-danger"></span>
             </div>
             <div class="form-group">

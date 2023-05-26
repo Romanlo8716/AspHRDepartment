@@ -162,6 +162,7 @@
         <input type="hidden" name="SeriesPass" value="@Model?.SeriesPass" />
         <input type="hidden" name="NumberPass" value="@Model?.NumberPass" />
         <input type="hidden" name="IssuedByWhom" value="@Model?.IssuedByWhom" />
+        <input type="hidden" name="DateOfIssue" value="@Model?.DateOfIssue" />
         <input type="hidden" name="DivisionCode" value="@Model?.DivisionCode" />
         <input type="hidden" name="NumberSnils" value="@Model?.NumberSnils" />
         <input type="hidden" name="NumberInn" value="@Model?.NumberInn" />
@@ -174,7 +175,7 @@
         <input type="hidden" name="name_kommis" value="@Model?.name_kommis" />
         <input type="hidden" name="Photo" value="@Model?.Photo" />
         <input type="hidden" name="DescriptionWorker" value="@Model?.DescriptionWorker" />
-        <input type="hidden" name="dissmisStatus" value="true" />
+        <input type="hidden" name="dissmisStatus" value="@Model?.dissmisStatus" />
 
 
         <input type="submit" value="Восстановить" class="btn btn-primary" /> |

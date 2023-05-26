@@ -7,5 +7,7 @@
         public Department department { get; set; }
 
         public IEnumerable<DepartmentsAndPostsOfWorker> departmentsAndPostsOfWorkers { get; set; }
+
+        public IEnumerable<PostsOfDepartment> postsOfDepartments { get; set; }
     }
 }

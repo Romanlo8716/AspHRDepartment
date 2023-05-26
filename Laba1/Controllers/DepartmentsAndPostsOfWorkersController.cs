@@ -98,7 +98,9 @@ namespace Laba1.Controllers
                 @ViewBag.MiddlenameWorker = worker.Middlename;
                 ViewBag.idDep = idDep;
                 ViewBag.idWorker = idWorker;
-                return View(await _context.Posts.ToListAsync());
+
+                var post = _context.PostsOfDepartment.Include(e => e.Post).Where(e => e.DepartmentId == idDep).ToArray();
+                return View(post);
             }
             else
             {

@@ -260,7 +260,7 @@ namespace Laba1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Surname,Middlename,Phone,DateOfBirth, CityHabitation, StreetHabitation, HouseHabitation, FamilyStatus, Children, Email, SeriesPass, NumberPass, IssuedByWhom, DateOfIssue, DivisionCode, NumberSnils, NumberInn, Gender, military_title, shelf_life, stock_category, profile, vus, name_kommis, Photo, DescriptionWorker, dismissStatus")] Worker worker, IFormFile upload)
+        public async Task<IActionResult> Create([Bind("Id,Name,Surname,Middlename,Phone,DateOfBirth, CityHabitation, StreetHabitation, HouseHabitation, FamilyStatus, Children, Email, SeriesPass, NumberPass, IssuedByWhom, DateOfIssue, DivisionCode, NumberSnils, NumberInn, Gender, military_title, shelf_life, stock_category, profile, vus, name_kommis, Photo, DescriptionWorker,  dismissStatus")] Worker worker, IFormFile upload)
         {
             if (ModelState.IsValid)
             {
@@ -301,7 +301,7 @@ namespace Laba1.Controllers
           
             
 
-            return View(worker);
+         
         }
 
         public string error(string message)

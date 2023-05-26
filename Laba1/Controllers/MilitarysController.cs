@@ -77,7 +77,7 @@ namespace Laba1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddMilitary(int id, [Bind("Id,Name,Surname,Middlename,Phone,Gender, military_title,shelf_life,stock_category,profile,vus,name_kommis")] Worker worker)
+        public async Task<IActionResult> AddMilitary(int id, [Bind("Id,Name,Surname,Middlename,Phone,DateOfBirth, CityHabitation, StreetHabitation, HouseHabitation, FamilyStatus, Children, Email, SeriesPass, NumberPass, IssuedByWhom, DateOfIssue, DivisionCode, NumberSnils, NumberInn, Gender, military_title, shelf_life, stock_category, profile, vus, name_kommis, Photo, DescriptionWorker,  dismissStatus")] Worker worker)
         {
             ViewBag.id = id;
             ViewBag.Name = worker.Name;
@@ -110,7 +110,7 @@ namespace Laba1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index), new { Id = id });
+                return Redirect($"~/Workers/Intelligence/{id}");
             }
 
             return View(worker);

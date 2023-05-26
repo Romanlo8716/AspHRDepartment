@@ -1,0 +1,37 @@
+﻿@model Laba1.Models.PostsOfDepartment
+
+@{
+    ViewBag.Title = "ConfirmSelectionAddWorker";
+}
+
+<h1 class="pb-5">Добавление должности в отдел: Подтверждение</h1>
+
+
+<hr />
+<form asp-action="ChoosePost">
+
+    <div style="font-size:30px;">
+        <span style="font-weight:bold">Отдел:</span> @ViewBag.NameDepartment
+    </div>
+    <br>
+    <div style="font-size:30px;">
+        <span style="font-weight:bold">Должность:</span> @ViewBag.NamePost
+    </div>
+    <br>
+    <div style="font-size:30px;">
+        <span style="font-weight:bold">Количество вакантных мест:</span> <input asp-for="Count" type="number" name="countPost" />
+    </div>
+    <span asp-validation-for="Count" class="text-danger"></span>
+    <br>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="hidden" name="departmentId" value="@ViewBag.idDep" />
+            <input type="hidden" name="postId" value="@ViewBag.idPost" />
+               
+
+                <input type="submit" value="Подтвердить" class="btn btn-primary" />
+            </div>
+        </div>
+  
+</form>

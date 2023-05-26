@@ -130,8 +130,8 @@
                     <div style="font-size:18px; display:inline-block;">
                         <select asp-for="FamilyStatus" class="form-select" style="width:300px;">
 
-                            <option value="Не женат (Не замужем)">Не женат (Не замужем)</option>
-                            <option value="Женат (Замужем)">Женат (Замужем)</option>
+                            <option value="Холост">Холост</option>
+                            <option value="В браке">В браке</option>
                         </select>
 
                     </div>
@@ -281,7 +281,20 @@
 
                     <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.shelf_life):</div>
                     <div style="font-size:18px; display:inline-block; margin-left:54px;">
-                        <input asp-for="shelf_life" class="form-control" style="width:300px;" />
+                        <select asp-for="shelf_life" class="form-select" style="width:300px;">
+
+                            <option value="А1">А1</option>
+                            <option value="А2">А2</option>
+                            <option value="А3">А3</option>
+                            <option value="А4">А4</option>
+                            <option value="Б1">Б1</option>
+                            <option value="Б2">Б2</option>
+                            <option value="Б3">Б3</option>
+                            <option value="Б4">Б4</option>
+                            <option value="В">В</option>
+                            <option value="Г">Г</option>
+                            <option value="Д">Д</option>
+                        </select>
 
                     </div>
                     <br>
@@ -291,7 +304,13 @@
 
                     <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.stock_category):</div>
                     <div style="font-size:18px; display:inline-block; margin-left:72px;">
-                        <input asp-for="stock_category" class="form-control" style="width:300px;" />
+                        <select asp-for="stock_category" class="form-select" style="width:300px;">
+
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+
+                        </select>
 
                     </div>
                     <br>

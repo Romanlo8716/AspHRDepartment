@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\css\\styleAdressDepartmentIndex.css"
     },
     {
+      "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleDepartmentAddWorker.css",
+      "PackagePath": "staticwebassets\\css\\styleDepartmentAddWorker.css"
+    },
+    {
       "Id": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleDepartmentIndex.css",
       "PackagePath": "staticwebassets\\css\\styleDepartmentIndex.css"
     },

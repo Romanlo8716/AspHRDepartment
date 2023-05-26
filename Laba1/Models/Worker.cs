@@ -49,7 +49,7 @@ namespace Laba1.Models
 
         [Display(Name = "Дом")]
         [Required(ErrorMessage = "Введите номер дома!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректный номер дома!")]
+        [RegularExpression(@"^[0-9/а-я]+$", ErrorMessage = "Некорректный номер дома!")]
         public string HouseHabitation { get; set; }
 
         [Display(Name = "Семейное положение")]
@@ -67,17 +67,17 @@ namespace Laba1.Models
 
         [Display(Name = "Серия паспорта")]
         [Required(ErrorMessage = "Введите серию паспорта!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректая серия паспорта!")]
-        public int SeriesPass { get; set; }
+        [RegularExpression(@"^([0-9]{2}\s{1}[0-9]{2})?$", ErrorMessage = "Некорректая серия паспорта!")]
+        public string SeriesPass { get; set; }
 
         [Display(Name = "Номер паспорта")]
         [Required(ErrorMessage = "Введите номер паспорта!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректный номер паспорта!")]
-        public int NumberPass { get; set; }
+        [RegularExpression(@"^([0-9]{6})?$", ErrorMessage = "Некорректный номер паспорта!")]
+        public string NumberPass { get; set; }
 
         [Display(Name = "Кем выдан")]
         [Required(ErrorMessage = "Заполните поле!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректное поле!")]
+        [RegularExpression(@"^[А-ЯЁ]{1}[А-ЯЁа-яё ]+$", ErrorMessage = "Некорректное поле!")]
         public string IssuedByWhom { get; set; }
 
         [Display(Name = "Дата выдачи")]
@@ -87,17 +87,17 @@ namespace Laba1.Models
 
         [Display(Name = "Код подразделения")]
         [Required(ErrorMessage = "Введите код подразделения!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректный код подразделения!")]
+        [RegularExpression(@"^[0-9]{3}[-]{1}[0-9]{3}$", ErrorMessage = "Некорректный код подразделения!")]
         public string DivisionCode{ get; set; }
 
         [Display(Name = "Номер Снилс")]
         [Required(ErrorMessage = "Введите номер снилс!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректный номер снилс!")]
+        [RegularExpression(@"(^\d{3}-\d{3}-\d{3}[ ]{1}\d{2}$)|(^\d{3}-\d{3}-\d{3}-\d{2}$)", ErrorMessage = "Некорректный номер снилс!")]
         public string NumberSnils { get; set; }
 
         [Display(Name = "Номер ИНН")]
         [Required(ErrorMessage = "Введите номер ИНН!")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректный номер ИНН!")]
+        [RegularExpression(@"^[0-9]{12}?$", ErrorMessage = "Некорректный номер ИНН!")]
         public string NumberInn { get; set; }
 
         [Display(Name = "Пол")]
@@ -105,31 +105,26 @@ namespace Laba1.Models
         public string Gender { get; set; }
 
         [Display(Name = "Звание")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректое звание!")]
+       
         public string? military_title { get; set; }
 
         [Display(Name = "Категория годности")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректная категория годности!")]
         public string?  shelf_life { get; set; }
 
         [Display(Name = "Категория запаса")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректная категория запаса!")]
         public int? stock_category { get; set; }
 
         [Display(Name = "Состав")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректный состав!")]
+        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё ]+$", ErrorMessage = "Некорректный состав!")]
         public string? profile { get; set; }
 
         [Display(Name = "ВУС")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректный ВУС!")]
         public string? vus { get; set; }
 
         [Display(Name = "Название коммисариата")]
-        [RegularExpression(@"^[А-ЯЁ]{1}[а-яё]+$", ErrorMessage = "Некорректное название коммисариата!")]
         public string? name_kommis { get; set; }
 
         [Display(Name = "Фото сотрудника")]
-        [Required(ErrorMessage = "Выберите фото!")]
         public string? Photo { get; set; }
 
         [Display(Name = "Описание сотрудника")]

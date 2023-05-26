@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Wa6h9FDgXNtApIdtrWsGXtdiinnmxbqiQfr/t2P+GTc=",
+  "Hash": "AcV5U0bc/1+vx9W0YjSEJQiRLagN1Dg5MTT1E6X3rWE=",
   "Source": "Laba1",
   "BasePath": "_content/Laba1",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\styleAdressDepartmentIndex.css"
+    },
+    {
+      "Identity": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleDepartmentAddWorker.css",
+      "SourceId": "Laba1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\",
+      "BasePath": "_content/Laba1",
+      "RelativePath": "css/styleDepartmentAddWorker.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styleDepartmentAddWorker.css"
     },
     {
       "Identity": "C:\\3 курс\\Asp\\Laba1\\Laba1\\wwwroot\\css\\styleDepartmentIndex.css",

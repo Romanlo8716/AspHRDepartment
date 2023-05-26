@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Ошибка добавления";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Вы не можете выбрать данную должность, так как в отделе нет свободных мест на данную должность!</h1>
+    <p>Вернитесь назад и измените данные.</p>
+    <form asp-action="ErrorCountNull">
+        <input type="hidden" name="departmentId" value="@ViewBag.idDep">
+        <input type="hidden" name="workerId" value="@ViewBag.idWorker">
+        <p><input type="submit" value="Вернуться назад" class="btn btn-primary" /></p>
+    </form>
+    
+
+
+</div>

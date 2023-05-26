@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Laba1.Models.Worker>
-
+<link rel="stylesheet" href="~/css/styleDepartmentAddWorker.css" />
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -122,12 +122,13 @@
                     @item.Middlename
                 </td>
                 <td>
-                    @item.Gender
+                    @item.Phone
+                   
                 </td>
                 <td>
-                    @item.Phone
+                    @item.Gender
                 </td>
-                @if (User.IsInRole("admin"))
+                @if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
                 {
                     <td>
                         <form asp-action="AddWorker">

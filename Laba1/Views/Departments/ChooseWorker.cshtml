@@ -1,8 +1,10 @@
-﻿@model IEnumerable<Laba1.Models.Post>
+﻿@model IEnumerable<Laba1.Models.PostsOfDepartment>
 
 @{
     ViewData["Title"] = "Post";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int close = 0;
+    int open = 0;
 }
 
 <h2>Добавление в: @ViewBag.NameDep</h2>
@@ -16,10 +18,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Post.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Salary)
+                @Html.DisplayNameFor(model => model.Post.Salary)
+            </th>
+            <th>
+                Свободных мест
             </th>
             <th></th>
         </tr>
@@ -27,22 +32,40 @@
     <tbody>
         @foreach (var item in Model)
         {
+            close = 0;
+            open = 0;
+            
+            @foreach (var item2 in ViewBag.PostsCount)
+            {
+                if (item.PostId == item2.PostId)
+                {
+                    close += 1;
+                }
+            }
+             
+                    open = item.Count - close;
+                
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.Post.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Salary)
+                    @Html.DisplayFor(modelItem => item.Post.Salary)
+                </td>
+                <td>
+                    @open
                 </td>
                
+                
                 <td>
                     <form asp-action="ChooseWorker" >
                         <div class="form-group">
                             <input type="hidden" name="departmentId" value="@ViewBag.idDep" />
                             <input type="hidden" name="workerId" value="@ViewBag.idWorker" />
-                            <input type="hidden" name="postId" value="@item.Id" />
+                            <input type="hidden" name="postId" value="@item.PostId" />
+                            <input type="hidden" name="openCount" value="@open" />
                             <input type="submit" value="Выбрать" class="btn btn-primary" />
-                            <a asp-action="EditWorker" style="color:green" asp-route-id="@item.Id ">Изменить</a>
+                            <a asp-controller="Posts" asp-action="Edit" style="color:green" asp-route-id="@item.PostId ">Изменить</a>
                         </div>
 
 

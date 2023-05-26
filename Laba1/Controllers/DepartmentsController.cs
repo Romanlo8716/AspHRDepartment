@@ -3,16 +3,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Laba1.Models;
 using Laba1.Models.ViewModels;
+using Microsoft.IdentityModel.Tokens;
+using Laba1.Migrations;
 
 namespace Laba1.Controllers
 {
     public class DepartmentsController : Controller
     {
         private readonly AppDBContext _context;
+        private readonly IWebHostEnvironment _appEnvironment;
 
-        public DepartmentsController(AppDBContext context)
+        public DepartmentsController(AppDBContext context, IWebHostEnvironment appEnvironment)
         {
             _context = context;
+            _appEnvironment = appEnvironment;
         }
 
         // GET: Departments
@@ -32,7 +36,7 @@ namespace Laba1.Controllers
         
         public IActionResult AddWorker(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 Department department = _context.Departments.Find(id);
 
@@ -126,12 +130,14 @@ namespace Laba1.Controllers
 
         public async Task<IActionResult> ChooseWorker(int? idDep, int? idWorker)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
 
 
                 Department department = await _context.Departments.FindAsync(idDep);
                 Worker worker = await _context.Workers.FindAsync(idWorker);
+
+                var post = _context.PostsOfDepartment.Include(e => e.Post).Where(e => e.DepartmentId == idDep).ToArray();
 
                 if (idDep != department.Id || idWorker != worker.Id)
                 {
@@ -144,7 +150,12 @@ namespace Laba1.Controllers
                 ViewBag.MiddlenameWorker = worker.Middlename;
                 ViewBag.idDep = idDep;
                 ViewBag.idWorker = idWorker;
-                return View(await _context.Posts.ToListAsync());
+
+                var postCount = _context.DepartmentsAndPostsOfWorker.Where(e => e.DepartmentId == idDep);
+
+                ViewBag.PostsCount = postCount;
+
+                return View(post);
             }
             else
             {
@@ -153,16 +164,23 @@ namespace Laba1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChooseWorker(int departmentId, int workerId, int postId)
+        public async Task<IActionResult> ChooseWorker(int departmentId, int workerId, int postId, int openCount)
         {
+            if(openCount == 0)
+            {
+                return RedirectToAction(nameof(ErrorCountNull), new { depId = departmentId, workId = workerId, postId = postId});
+            }
+            else
+            {
+                return RedirectToAction(nameof(ConfirmSelectionAddWorker), new { idDep = departmentId, idWorker = workerId, idPost = postId });
+            }
 
-
-            return RedirectToAction(nameof(ConfirmSelectionAddWorker), new { idDep = departmentId, idWorker = workerId, idPost = postId });
+           
         }
 
         public async Task<IActionResult> ConfirmSelectionAddWorker(int? idDep, int? idWorker, int? idPost)
         {
-            if(User.IsInRole("admin"))
+            if(User.IsInRole("admin") || User.IsInRole("multiAdmin"))
                 {
                 Department department = await _context.Departments.FindAsync(idDep);
                 Worker worker = await _context.Workers.FindAsync(idWorker);
@@ -230,10 +248,119 @@ namespace Laba1.Controllers
             return View();
         }
 
+        public IActionResult ErrorCountNull(int depId, int workId, int postid)
+        {
+            ViewBag.idDep = depId;
+            ViewBag.idWorker = workId;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ErrorCountNull(int departmentId, int workerId)
+        {
+            
+            return RedirectToAction(nameof(ChooseWorker), new { idDep = departmentId, idWorker = workerId});
+        }
+
+
+        public IActionResult AddPost(int? id)
+        {
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+            {
+                Department department = _context.Departments.Find(id);
+
+                ViewBag.NameDep = department.Name;
+
+                ViewBag.idDep = id;
+
+               
+                var posts = _context.Posts;
+
+
+                return View(posts.ToList());
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPost(int departmentId, int postId)
+        {
+            return RedirectToAction(nameof(ChoosePost), new { idDep = departmentId, idPost = postId });
+        }
+
+        public async Task<IActionResult> ChoosePost(int? idDep, int? idPost)
+        {
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
+            {
+
+
+                Department department = await _context.Departments.FindAsync(idDep);
+                Post post = await _context.Posts.FindAsync(idPost);
+
+                ViewBag.NameDepartment = department.Name;
+
+                ViewBag.NamePost = post.Title;
+
+                ViewBag.idDep = idDep;
+
+                ViewBag.idPost = idPost;
+
+                if (idDep != department.Id || idPost != post.Id)
+                {
+                    return NotFound();
+                }
+
+
+             
+                return View();
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChoosePost(int departmentId, int postId, int countPost, [Bind("Id, PostId, DepartmentId, Count")] PostsOfDepartment postsOfDepartment)
+        {
+
+
+            var postCount = _context.PostsOfDepartment.Where(e => e.DepartmentId == departmentId).Where(e => e.PostId == postId).ToList();
+
+            if (postCount.Count() == 0)
+            {
+                if (ModelState.IsValid)
+                {
+                    postsOfDepartment.PostId = postId;
+                    postsOfDepartment.DepartmentId = departmentId;
+                    postsOfDepartment.Count = countPost;
+                    _context.Add(postsOfDepartment);
+
+
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Details), new {id = departmentId});
+                }
+                return View(postsOfDepartment);
+            }
+            else
+            {
+                return RedirectToAction(nameof(ErrorAddPost), new { id = departmentId });
+            }
+        }
+
+        public IActionResult ErrorAddPost(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
         // GET: Workers/Edit/5
         public async Task<IActionResult> EditWorker(int? id)
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("admin") || User.IsInRole("multiAdmin"))
             {
                 if (id == null || _context.Workers == null)
                 {
@@ -245,7 +372,18 @@ namespace Laba1.Controllers
                 {
                     return NotFound();
                 }
-              
+
+                if (!worker.Photo.IsNullOrEmpty())
+                {
+                    byte[] photodata = System.IO.File.ReadAllBytes(_appEnvironment.WebRootPath + worker.Photo);
+                    ViewBag.Photodata = photodata;
+                }
+                else
+                {
+                    ViewBag.Photodata = null;
+                }
+
+
                 return View(worker);
             }
             else
@@ -262,17 +400,30 @@ namespace Laba1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditWorker(int id, [Bind("Id,Name,Surname,Middlename,Phone,Gender")] Worker worker)
+        public async Task<IActionResult> EditWorker(int id, [Bind("Id,Name,Surname,Middlename,Phone,DateOfBirth, CityHabitation, StreetHabitation, HouseHabitation, FamilyStatus, Children, Email, SeriesPass, NumberPass, IssuedByWhom, DateOfIssue, DivisionCode, NumberSnils, NumberInn, Gender, military_title, shelf_life, stock_category, profile, vus, name_kommis, Photo, DescriptionWorker,  dismissStatus")] Worker worker, IFormFile? upload)
         {
             if (id != worker.Id)
             {
                 return NotFound();
             }
 
-      
-
             if (ModelState.IsValid)
             {
+                if (upload != null)
+                {
+                    string path = "/Files/" + upload.FileName;
+                    using (var fileStream = new
+                   FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await upload.CopyToAsync(fileStream);
+                    }
+                    //if (!worker.Photo.IsNullOrEmpty())
+                    //{
+                    //    System.IO.File.Delete(_appEnvironment.WebRootPath + worker.Photo);
+                    //}
+                    worker.Photo = path;
+                }
+
                 try
                 {
                     _context.Update(worker);
@@ -289,9 +440,9 @@ namespace Laba1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(AddWorker), new {id = 1});
+                return RedirectToAction(nameof(Index));
             }
-          
+
             return View(worker);
         }
 
@@ -322,13 +473,19 @@ namespace Laba1.Controllers
 
                 descriptionDepartment.department = department; 
                 descriptionDepartment.departmentsAndPostsOfWorkers = _context.DepartmentsAndPostsOfWorker.Include(e => e.Worker).Include(e => e.Department).Include(e => e.Post).Where(b => b.DepartmentId == id).ToArray();
-
+                descriptionDepartment.postsOfDepartments = _context.PostsOfDepartment.Include(e => e.Post).Where(e => e.DepartmentId == id).ToList();
 
                 ViewBag.City = department.AdressDepartment.City;
                 ViewBag.Street = department.AdressDepartment.Street;
                 ViewBag.House = department.AdressDepartment.House;
                 ViewBag.DepId = id;
                 ViewBag.NameDepartment = department.Name;
+
+                var postCount = _context.DepartmentsAndPostsOfWorker.Where(e => e.DepartmentId == id);
+
+                ViewBag.PostsCount = postCount;
+
+                ViewBag.ClosePlace = postCount;
 
                 if (department == null)
                 {
@@ -346,7 +503,7 @@ namespace Laba1.Controllers
         // GET: Departments/Create
         public IActionResult Create()
         {
-            if (User.IsInRole("admin"))
+            if (User.IsInRole("multiAdmin"))
             {
                 
                 //ViewData["idAdressDepartment"] = new SelectList(_context.AdressDepartments, "Id", "City");

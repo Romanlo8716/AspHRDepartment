@@ -33,6 +33,9 @@ namespace Laba1.Models
         public DbSet<Laba1.Models.DepartmentsAndPostsOfWorker>? DepartmentsAndPostsOfWorker { get; set; }
 
 
+        public DbSet<Laba1.Models.PostsOfDepartment>? PostsOfDepartment { get; set; }
+
+
      
 
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Laba1.Models.Post>
+﻿@model IEnumerable<Laba1.Models.PostsOfDepartment>
 
     @{
         ViewData["Title"] = "Post";
@@ -16,10 +16,10 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Title)
+                    @Html.DisplayNameFor(model => model.Post.Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Salary)
+                    @Html.DisplayNameFor(model => model.Post.Salary)
                 </th>
                 <th></th>
             </tr>
@@ -29,10 +29,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        @Html.DisplayFor(modelItem => item.Post.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Salary)
+                        @Html.DisplayFor(modelItem => item.Post.Salary)
                     </td>
 
                     <td>
@@ -40,9 +40,9 @@
                             <div class="form-group">
                                 <input type="hidden" name="departmentId" value="@ViewBag.idDep" />
                                 <input type="hidden" name="workerId" value="@ViewBag.idWorker" />
-                                <input type="hidden" name="postId" value="@item.Id" />
+                                <input type="hidden" name="postId" value="@item.PostId" />
                                 <input type="submit" value="Выбрать" class="btn btn-primary" />
-                                <a asp-action="EditWorker" style="color:green" asp-route-id="@item.Id ">Изменить</a>
+                                <a asp-action="EditWorker" style="color:green" asp-route-id="@item.PostId ">Изменить</a>
                             </div>
 
 

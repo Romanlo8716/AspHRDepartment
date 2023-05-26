@@ -6,6 +6,8 @@
 
     string address = "";
     address = $"{ViewBag.City}, {ViewBag.Street}, {ViewBag.House}";
+    int close = 0;
+    int open = 0;
 }
 <meta charset="utf-8">
 <script src="/js/intlTelInput.min.js" charset="utf-8"></script>
@@ -85,6 +87,107 @@
     <a asp-action="Index">Вернуться назад</a>
 </div>
 <br />
+
+<table>
+    <tbody>
+
+        <tr>
+            <td>
+                <h3>Должности внутри отдела &nbsp; &nbsp;</h3>
+            </td>
+            <td>
+                <h5>
+                    @if (User.IsInRole("multiAdmin"))
+                    {
+                        <a asp-action="AddPost" asp-route-id="@ViewBag.DepId">   Добавить должность</a>
+                    }
+
+                </h5>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Должность
+            </th>
+            <th>
+                Общее количество мест
+            </th>
+            <th>
+                Свободных мест
+            </th>
+            <th>
+                Занятых мест
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      
+        @foreach (var item in Model.postsOfDepartments)
+        {
+            
+            close = 0;
+            open = 0;
+            @foreach (var item2 in ViewBag.PostsCount)
+            {
+                if (item.PostId == item2.PostId)
+                {
+                    close += 1;
+                }
+            }
+        
+            <tr>
+                <td>
+                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@item.PostId">
+                        @item.Post.Title
+                    </a>
+                </td>
+                <td>
+                    @item.Count
+                </td>
+                <td>
+                    @{
+                        open = item.Count - close;
+                    }
+                 @open
+                </td>
+                <td>
+
+                    
+                    @close
+                    
+                </td>
+
+
+
+                <td>
+                    @if (User.IsInRole("multiAdmin"))
+                    {
+                        <a asp-controller="PostsOfDepartments" asp-action="Edit" asp-route-id="@item.Id">Изменить количество мест</a> <span> | </span>
+                    }
+
+                    <a asp-controller="PostsOfDepartments" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+
+                    @if (User.IsInRole("multiAdmin"))
+                    {
+                        <span> | </span>  <a asp-controller="PostsOfDepartments" asp-action="Delete" asp-route-id="@item.Id">Удалить из отдела</a>
+                    }
+                </td>
+
+
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+
 <table>
     <tbody>
 

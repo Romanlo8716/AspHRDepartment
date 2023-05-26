@@ -4,6 +4,7 @@ using Laba1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Laba1.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230516105552_stringFormatPassport")]
+    partial class stringFormatPassport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,32 +243,6 @@ namespace Laba1.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("Laba1.Models.PostsOfDepartment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("PostsOfDepartment");
-                });
-
             modelBuilder.Entity("Laba1.Models.Vacation", b =>
                 {
                     b.Property<int>("Id")
@@ -389,6 +366,7 @@ namespace Laba1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Photo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeriesPass")
@@ -508,25 +486,6 @@ namespace Laba1.Migrations
                         .HasForeignKey("WorkerId");
 
                     b.Navigation("Worker");
-                });
-
-            modelBuilder.Entity("Laba1.Models.PostsOfDepartment", b =>
-                {
-                    b.HasOne("Laba1.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Laba1.Models.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Department");
-
-                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("Laba1.Models.Vacation", b =>

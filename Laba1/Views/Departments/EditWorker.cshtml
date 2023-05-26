@@ -4,58 +4,358 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="/js/intlTelInput.min.js" charset="utf-8"></script>
+<link rel="stylesheet" href="~/css/styleWorkerCreate.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" asp-append-version="true">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js" asp-append-version="true"></script>
+<h1>Изменить сотрудника</h1>
 
-<h1>Изменение</h1>
-
-<h4>Сотрудник</h4>
+<h4>Заполните все данные формы сотрудника. <span style="color:rgb(52,122,182)">(Все необязательные поля подчеркнуты)</span></h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Departments" asp-action="EditWorker">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+
+<div class="ourInform">
+    <form asp-action="EditWorker" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="dissmisStatus" value="false" />
+        <div class="boxImage">
+
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+
+                <div class="mt-4">
+                    <h3>Изображение сотрудника</h3>
+                    <input type="hidden" name="Photo" value="@Model.Photo" />
+                    @if (ViewBag.Photodata != null)
+                    {
+                        <img class="mt-4 mb-4" width="200"
+                             src="data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.Photodata))">
+                    }
+                    <div class="form-group">
+                        <div class="mt-4">
+                            <input type="file" name="upload" class="form-control" /><br>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div style="margin-left:120px;">
+
+            <div class="name">
+                <div style="font-size:18px;display:inline-block;">@Html.DisplayNameFor(model => model.Name): </div>
+                <div style="font-size:18px; display:inline-block;">
+                    <input asp-for="Name" class="form-control" style="width:250px;" />
+
+                </div>
+                </br>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Surname" class="control-label"></label>
-                <input asp-for="Surname" class="form-control" />
+
+            <div class="fio">
+                <div style="font-size:18px;display:inline-block;">@Html.DisplayNameFor(model => model.Surname):</div>
+                <div style="font-size:18px; display:inline-block;">
+                    <input asp-for="Surname" class="form-control" style="width:250px;" />
+
+                </div>
+                </br>
                 <span asp-validation-for="Surname" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Middlename" class="control-label"></label>
-                <input asp-for="Middlename" class="form-control" />
+
+            <div class="fio">
+                <div style="font-size:18px;display:inline-block;text-decoration: underline solid rgb(52,122,182)">@Html.DisplayNameFor(model => model.Middlename):</div>
+                <div style="font-size:18px; display:inline-block;">
+                    <input asp-for="Middlename" class="form-control" style="width:250px;" />
+
+                </div>
+                </br>
                 <span asp-validation-for="Middlename" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
+
+
+
+
+        </div>
+        <div class="lickInform">
+            <h5 class="logoLichInform">Личные данные</h5>
+            <div class="boxLichInform">
+                <div style="margin-top:15px; margin-left:15px;">
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.DateOfBirth):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:50px;">
+                        <input type="date" asp-for="DateOfBirth" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    <br>
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.Gender):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:134px;">
+                        <select asp-for="Gender" class="form-select" style="width:300px;">
+
+                            <option value="Мужской">Мужской</option>
+                            <option value="Женский">Женский</option>
+                        </select>
+
+                    </div>
+
+
+
+                    <br>
+                    <br>
+                    <div>
+                        <div style="color:rgb(108,112,115);display:inline-block; position:absolute;">Место Проживания:</div>
+                        <div style="color:rgb(108,112,115);display:inline-block;margin-left:170px;">
+                            <label asp-for="CityHabitation" class="control-label"></label>
+                            <input asp-for="CityHabitation" class="form-control" style="width:300px;" />
+                            <span asp-validation-for="CityHabitation" class="text-danger"></span>
+                            <br>
+                            <label asp-for="StreetHabitation" class="control-label"></label>
+                            <input asp-for="StreetHabitation" class="form-control" style="width:300px;" />
+                            <span asp-validation-for="StreetHabitation" class="text-danger"></span>
+                            <br>
+                            <label asp-for="HouseHabitation" class="control-label"></label>
+                            <input asp-for="HouseHabitation" class="form-control" style="width:300px;" />
+                            <span asp-validation-for="HouseHabitation" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <h6 style="text-align:center; margin-top:20px;">Данные о семье</h6>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.FamilyStatus):</div>
+                    <div style="font-size:18px; display:inline-block;">
+                        <select asp-for="FamilyStatus" class="form-select" style="width:300px;">
+
+                            <option value="Не женат (Не замужем)">Не женат (Не замужем)</option>
+                            <option value="Женат (Замужем)">Женат (Замужем)</option>
+                        </select>
+
+                    </div>
+                    </br>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.Children):</div>
+                    <div style="font-size:18px; display:inline-block;margin-left:30px;">
+                        <input asp-for="Children" class="form-control" style="width:300px;" />
+
+                    </div>
+                    </br>
+                    <span asp-validation-for="Children" class="text-danger"></span>
+
+
+                    <h6 style="text-align:center; margin-top:20px;">Контактная информация </h6>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.Phone):</div>
+                    <div style="font-size:18px; display:inline-block;margin-left:99px;">
+                        <input asp-for="Phone" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+
+                    <br>
+                    <div style="color:rgb(108,112,115);display:inline-block;text-decoration: underline solid rgb(52,122,182)">@Html.DisplayNameFor(model => model.Email):</div>
+                    <div style="font-size:18px; display:inline-block;margin-left:20px;">
+                        <input asp-for="Email" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <select asp-for="Gender" class="form-select">
-                    <option value="Не указано">Не указано</option>
-                    <option value="Мужской">Мужской</option>
-                    <option value="Женский">Женский</option>
-                </select>
+        </div>
+
+        <div class="passInform">
+            <h5 class="logoPassInform">Паспортные данные</h5>
+            <div class="boxPassInform">
+                <div style="margin-top:15px; margin-left:15px;">
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.SeriesPass):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:45px;">
+                        <input asp-for="SeriesPass" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="SeriesPass" class="text-danger"></span>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.NumberPass):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:40px;">
+                        <input asp-for="NumberPass" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="NumberPass" class="text-danger"></span>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.IssuedByWhom):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:82px;">
+                        <input asp-for="IssuedByWhom" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="IssuedByWhom" class="text-danger"></span>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.DateOfIssue):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:68px;">
+                        <input type="date" asp-for="DateOfIssue" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="DateOfIssue" class="text-danger"></span>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.DivisionCode):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:17px;">
+                        <input asp-for="DivisionCode" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="DivisionCode" class="text-danger"></span>
+                    <br>
+
+
+                    <h6 style="text-align:center;">СНИЛС</h6>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.NumberSnils):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:64px;">
+                        <input asp-for="NumberSnils" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="NumberSnils" class="text-danger"></span>
+                    <br>
+
+
+
+                    <h6 style="text-align:center;">ИНН </h6>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.NumberInn):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:72px;">
+                        <input asp-for="NumberInn" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="NumberInn" class="text-danger"></span>
+                    <br>
+
+
+                </div>
             </div>
-         
-            <div class="form-group">
-                <input style="margin-top:10px" type="submit" value="Изменить" class="btn btn-primary" />
+        </div>
+
+        <div class="boxDescWorker">
+            <h5 class="logoDesc">Описание сотрудника (дополнительная информация)</h5>
+            <div class="descWorker">
+
+                <div class="form-group">
+                    <label asp-for="DescriptionWorker" class="control-label" style="margin-bottom:5px;"></label>
+                    <textarea asp-for="DescriptionWorker" id="summernote" class="form-control"></textarea>
+                    <span asp-validation-for="DescriptionWorker" class="text-danger"></span>
+                </div>
+
+
             </div>
-        </form>
-    </div>
+        </div>
+
+        <div class="boxMilitaryWorker">
+            <h5 class="logoMilitary">Данные военной книги</h5>
+            <div class="militaryWorker">
+                <div style="margin-top:15px; margin-left:15px;">
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.military_title):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:148px;">
+                        <input asp-for="military_title" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="military_title" class="text-danger"></span>
+                    <br>
+
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.shelf_life):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:54px;">
+                        <input asp-for="shelf_life" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="shelf_life" class="text-danger"></span>
+                    <br>
+
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.stock_category):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:72px;">
+                        <input asp-for="stock_category" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="stock_category" class="text-danger"></span>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.profile):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:149px;">
+                        <input asp-for="profile" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="profile" class="text-danger"></span>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.vus):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:170px;">
+                        <input asp-for="vus" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="vus" class="text-danger"></span>
+                    <br>
+
+                    <div style="color:rgb(108,112,115);display:inline-block;">@Html.DisplayNameFor(model => model.name_kommis):</div>
+                    <div style="font-size:18px; display:inline-block; margin-left:17px;">
+                        <input asp-for="name_kommis" class="form-control" style="width:300px;" />
+
+                    </div>
+                    <br>
+                    <span asp-validation-for="name_kommis" class="text-danger"></span>
+                    <br>
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input style="margin-top:10px" type="submit" value="Изменить" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 
+
 <div>
-    <a asp-action="Index">Вернуться назад</a>
+    <a asp-controller="Departments" asp-action="Index">Вернуться назад</a>
 </div>
 
 @section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                height: 200,
+                disableDragAndDrop: true
+
+            });
+
+        });
+    </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
     }
+
 }
